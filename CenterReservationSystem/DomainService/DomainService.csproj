@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B839A458-7433-4E64-9E54-D55312469EA7}</ProjectGuid>
+    <ProjectGuid>{3C60F98A-91E3-413D-A423-5993E7B2020C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CenterReservationSystem</RootNamespace>
-    <AssemblyName>CenterReservationSystem</AssemblyName>
+    <RootNamespace>DomainService</RootNamespace>
+    <AssemblyName>DomainService</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -69,9 +69,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DomainService\DomainService.csproj">
-      <Project>{3c60f98a-91e3-413d-a423-5993e7b2020c}</Project>
-      <Name>DomainService</Name>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{2f195fb6-f7af-44c9-b638-f4fe809895ab}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
