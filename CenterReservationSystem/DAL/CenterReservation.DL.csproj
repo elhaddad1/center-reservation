@@ -32,8 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +51,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\ACPatient.cs">
+      <DependentUpon>CenterReservationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BDPhysician.cs">
+      <DependentUpon>CenterReservationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BDPhysicianSalary.cs">
+      <DependentUpon>CenterReservationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BDVisitPrice.cs">
+      <DependentUpon>CenterReservationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BDVisitType.cs">
+      <DependentUpon>CenterReservationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CenterReservationModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CenterReservationModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CenterReservationModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CenterReservationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CenterReservationModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CenterReservationModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\TRANVisit.cs">
+      <DependentUpon>CenterReservationModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -56,6 +96,24 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EntityDeploy Include="Entity\CenterReservationModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CenterReservationModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entity\CenterReservationModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CenterReservationModel.edmx</DependentUpon>
+      <LastGenOutput>CenterReservationModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Entity\CenterReservationModel.edmx.diagram">
+      <DependentUpon>CenterReservationModel.edmx</DependentUpon>
+    </None>
+    <None Include="Entity\CenterReservationModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CenterReservationModel.edmx</DependentUpon>
+      <LastGenOutput>CenterReservationModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -69,7 +127,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Data\ScriptSchemaanddata-09-21-2014.sql" />
   </ItemGroup>

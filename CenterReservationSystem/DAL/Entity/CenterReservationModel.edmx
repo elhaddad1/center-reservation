@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CenterReservationModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="CenterReservationModelStoreContainer">
+          <EntitySet Name="ACPatient" EntityType="CenterReservationModel.Store.ACPatient" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BDPhysician" EntityType="CenterReservationModel.Store.BDPhysician" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BDPhysicianSalary" EntityType="CenterReservationModel.Store.BDPhysicianSalary" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BDVisitPrice" EntityType="CenterReservationModel.Store.BDVisitPrice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BDVisitType" EntityType="CenterReservationModel.Store.BDVisitType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TRANVisit" EntityType="CenterReservationModel.Store.TRANVisit" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_BDPhysicianSalary_BDPhysician" Association="CenterReservationModel.Store.FK_BDPhysicianSalary_BDPhysician">
+            <End Role="BDPhysician" EntitySet="BDPhysician" />
+            <End Role="BDPhysicianSalary" EntitySet="BDPhysicianSalary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BDVisitPrice_BDVisitType" Association="CenterReservationModel.Store.FK_BDVisitPrice_BDVisitType">
+            <End Role="BDVisitType" EntitySet="BDVisitType" />
+            <End Role="BDVisitPrice" EntitySet="BDVisitPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANVisit_ACPatient" Association="CenterReservationModel.Store.FK_TRANVisit_ACPatient">
+            <End Role="ACPatient" EntitySet="ACPatient" />
+            <End Role="TRANVisit" EntitySet="TRANVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANVisit_BDPhysician" Association="CenterReservationModel.Store.FK_TRANVisit_BDPhysician">
+            <End Role="BDPhysician" EntitySet="BDPhysician" />
+            <End Role="TRANVisit" EntitySet="TRANVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANVisit_BDVisitType" Association="CenterReservationModel.Store.FK_TRANVisit_BDVisitType">
+            <End Role="BDVisitType" EntitySet="BDVisitType" />
+            <End Role="TRANVisit" EntitySet="TRANVisit" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ACPatient">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PatientName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Age" Type="int" />
+        </EntityType>
+        <EntityType Name="BDPhysician">
+          <Key>
+            <PropertyRef Name="PhysicianID" />
+          </Key>
+          <Property Name="PhysicianID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PhysicianName" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="BDPhysicianSalary">
+          <Key>
+            <PropertyRef Name="PhysicianPriceID" />
+          </Key>
+          <Property Name="PhysicianPriceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PhysicianID" Type="int" Nullable="false" />
+          <Property Name="FromDate" Type="date" Nullable="false" />
+          <Property Name="ToDate" Type="date" Nullable="false" />
+          <Property Name="PhysicianSalary" Type="decimal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BDVisitPrice">
+          <Key>
+            <PropertyRef Name="VisitPriceID" />
+          </Key>
+          <Property Name="VisitPriceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VisitTypeID" Type="int" Nullable="false" />
+          <Property Name="FromDate" Type="date" Nullable="false" />
+          <Property Name="ToDate" Type="date" Nullable="false" />
+          <Property Name="VisitPrice" Type="decimal" Nullable="false" Scale="3" />
+        </EntityType>
+        <EntityType Name="BDVisitType">
+          <Key>
+            <PropertyRef Name="VisitTypeID" />
+          </Key>
+          <Property Name="VisitTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VisitTypeName" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TRANVisit">
+          <Key>
+            <PropertyRef Name="VisitID" />
+          </Key>
+          <Property Name="VisitID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PatientID" Type="int" Nullable="false" />
+          <Property Name="PhysicianID" Type="int" Nullable="false" />
+          <Property Name="VisitTypeID" Type="int" Nullable="false" />
+          <Property Name="VisitDate" Type="date" Nullable="false" />
+          <Property Name="VisitPrice" Type="decimal" Nullable="false" Scale="3" />
+          <Property Name="PhysicianSalary" Type="decimal" Nullable="false" Scale="3" />
+          <Property Name="VisitsCount" Type="int" Nullable="false" />
+          <Property Name="TotalVisitPrice" Type="decimal" Nullable="false" Scale="3" />
+          <Property Name="Paiedprice" Type="decimal" Nullable="false" Scale="3" />
+          <Property Name="RestPrice" Type="decimal" Nullable="false" Scale="3" />
+        </EntityType>
+        <Association Name="FK_BDPhysicianSalary_BDPhysician">
+          <End Role="BDPhysician" Type="CenterReservationModel.Store.BDPhysician" Multiplicity="1" />
+          <End Role="BDPhysicianSalary" Type="CenterReservationModel.Store.BDPhysicianSalary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BDPhysician">
+              <PropertyRef Name="PhysicianID" />
+            </Principal>
+            <Dependent Role="BDPhysicianSalary">
+              <PropertyRef Name="PhysicianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BDVisitPrice_BDVisitType">
+          <End Role="BDVisitType" Type="CenterReservationModel.Store.BDVisitType" Multiplicity="1" />
+          <End Role="BDVisitPrice" Type="CenterReservationModel.Store.BDVisitPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BDVisitType">
+              <PropertyRef Name="VisitTypeID" />
+            </Principal>
+            <Dependent Role="BDVisitPrice">
+              <PropertyRef Name="VisitTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANVisit_ACPatient">
+          <End Role="ACPatient" Type="CenterReservationModel.Store.ACPatient" Multiplicity="1" />
+          <End Role="TRANVisit" Type="CenterReservationModel.Store.TRANVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACPatient">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="TRANVisit">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANVisit_BDPhysician">
+          <End Role="BDPhysician" Type="CenterReservationModel.Store.BDPhysician" Multiplicity="1" />
+          <End Role="TRANVisit" Type="CenterReservationModel.Store.TRANVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BDPhysician">
+              <PropertyRef Name="PhysicianID" />
+            </Principal>
+            <Dependent Role="TRANVisit">
+              <PropertyRef Name="PhysicianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANVisit_BDVisitType">
+          <End Role="BDVisitType" Type="CenterReservationModel.Store.BDVisitType" Multiplicity="1" />
+          <End Role="TRANVisit" Type="CenterReservationModel.Store.TRANVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BDVisitType">
+              <PropertyRef Name="VisitTypeID" />
+            </Principal>
+            <Dependent Role="TRANVisit">
+              <PropertyRef Name="VisitTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CenterReservationModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CenterReservationEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="ACPatients" EntityType="CenterReservationModel.ACPatient" />
+          <EntitySet Name="BDPhysicians" EntityType="CenterReservationModel.BDPhysician" />
+          <EntitySet Name="BDPhysicianSalaries" EntityType="CenterReservationModel.BDPhysicianSalary" />
+          <EntitySet Name="BDVisitPrices" EntityType="CenterReservationModel.BDVisitPrice" />
+          <EntitySet Name="BDVisitTypes" EntityType="CenterReservationModel.BDVisitType" />
+          <EntitySet Name="TRANVisits" EntityType="CenterReservationModel.TRANVisit" />
+          <AssociationSet Name="FK_TRANVisit_ACPatient" Association="CenterReservationModel.FK_TRANVisit_ACPatient">
+            <End Role="ACPatient" EntitySet="ACPatients" />
+            <End Role="TRANVisit" EntitySet="TRANVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BDPhysicianSalary_BDPhysician" Association="CenterReservationModel.FK_BDPhysicianSalary_BDPhysician">
+            <End Role="BDPhysician" EntitySet="BDPhysicians" />
+            <End Role="BDPhysicianSalary" EntitySet="BDPhysicianSalaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANVisit_BDPhysician" Association="CenterReservationModel.FK_TRANVisit_BDPhysician">
+            <End Role="BDPhysician" EntitySet="BDPhysicians" />
+            <End Role="TRANVisit" EntitySet="TRANVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BDVisitPrice_BDVisitType" Association="CenterReservationModel.FK_BDVisitPrice_BDVisitType">
+            <End Role="BDVisitType" EntitySet="BDVisitTypes" />
+            <End Role="BDVisitPrice" EntitySet="BDVisitPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANVisit_BDVisitType" Association="CenterReservationModel.FK_TRANVisit_BDVisitType">
+            <End Role="BDVisitType" EntitySet="BDVisitTypes" />
+            <End Role="TRANVisit" EntitySet="TRANVisits" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ACPatient">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Age" Type="Int32" />
+          <NavigationProperty Name="TRANVisits" Relationship="CenterReservationModel.FK_TRANVisit_ACPatient" FromRole="ACPatient" ToRole="TRANVisit" />
+        </EntityType>
+        <EntityType Name="BDPhysician">
+          <Key>
+            <PropertyRef Name="PhysicianID" />
+          </Key>
+          <Property Name="PhysicianID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PhysicianName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="BDPhysicianSalaries" Relationship="CenterReservationModel.FK_BDPhysicianSalary_BDPhysician" FromRole="BDPhysician" ToRole="BDPhysicianSalary" />
+          <NavigationProperty Name="TRANVisits" Relationship="CenterReservationModel.FK_TRANVisit_BDPhysician" FromRole="BDPhysician" ToRole="TRANVisit" />
+        </EntityType>
+        <EntityType Name="BDPhysicianSalary">
+          <Key>
+            <PropertyRef Name="PhysicianPriceID" />
+          </Key>
+          <Property Name="PhysicianPriceID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PhysicianID" Type="Int32" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhysicianSalary" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="BDPhysician" Relationship="CenterReservationModel.FK_BDPhysicianSalary_BDPhysician" FromRole="BDPhysicianSalary" ToRole="BDPhysician" />
+        </EntityType>
+        <EntityType Name="BDVisitPrice">
+          <Key>
+            <PropertyRef Name="VisitPriceID" />
+          </Key>
+          <Property Name="VisitPriceID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="VisitTypeID" Type="Int32" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="VisitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <NavigationProperty Name="BDVisitType" Relationship="CenterReservationModel.FK_BDVisitPrice_BDVisitType" FromRole="BDVisitPrice" ToRole="BDVisitType" />
+        </EntityType>
+        <EntityType Name="BDVisitType">
+          <Key>
+            <PropertyRef Name="VisitTypeID" />
+          </Key>
+          <Property Name="VisitTypeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="VisitTypeName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="BDVisitPrices" Relationship="CenterReservationModel.FK_BDVisitPrice_BDVisitType" FromRole="BDVisitType" ToRole="BDVisitPrice" />
+          <NavigationProperty Name="TRANVisits" Relationship="CenterReservationModel.FK_TRANVisit_BDVisitType" FromRole="BDVisitType" ToRole="TRANVisit" />
+        </EntityType>
+        <EntityType Name="TRANVisit">
+          <Key>
+            <PropertyRef Name="VisitID" />
+          </Key>
+          <Property Name="VisitID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientID" Type="Int32" Nullable="false" />
+          <Property Name="PhysicianID" Type="Int32" Nullable="false" />
+          <Property Name="VisitTypeID" Type="Int32" Nullable="false" />
+          <Property Name="VisitDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="VisitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="PhysicianSalary" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="VisitsCount" Type="Int32" Nullable="false" />
+          <Property Name="TotalVisitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="Paiedprice" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="RestPrice" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <NavigationProperty Name="ACPatient" Relationship="CenterReservationModel.FK_TRANVisit_ACPatient" FromRole="TRANVisit" ToRole="ACPatient" />
+          <NavigationProperty Name="BDPhysician" Relationship="CenterReservationModel.FK_TRANVisit_BDPhysician" FromRole="TRANVisit" ToRole="BDPhysician" />
+          <NavigationProperty Name="BDVisitType" Relationship="CenterReservationModel.FK_TRANVisit_BDVisitType" FromRole="TRANVisit" ToRole="BDVisitType" />
+        </EntityType>
+        <Association Name="FK_TRANVisit_ACPatient">
+          <End Role="ACPatient" Type="CenterReservationModel.ACPatient" Multiplicity="1" />
+          <End Role="TRANVisit" Type="CenterReservationModel.TRANVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACPatient">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="TRANVisit">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BDPhysicianSalary_BDPhysician">
+          <End Role="BDPhysician" Type="CenterReservationModel.BDPhysician" Multiplicity="1" />
+          <End Role="BDPhysicianSalary" Type="CenterReservationModel.BDPhysicianSalary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BDPhysician">
+              <PropertyRef Name="PhysicianID" />
+            </Principal>
+            <Dependent Role="BDPhysicianSalary">
+              <PropertyRef Name="PhysicianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANVisit_BDPhysician">
+          <End Role="BDPhysician" Type="CenterReservationModel.BDPhysician" Multiplicity="1" />
+          <End Role="TRANVisit" Type="CenterReservationModel.TRANVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BDPhysician">
+              <PropertyRef Name="PhysicianID" />
+            </Principal>
+            <Dependent Role="TRANVisit">
+              <PropertyRef Name="PhysicianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BDVisitPrice_BDVisitType">
+          <End Role="BDVisitType" Type="CenterReservationModel.BDVisitType" Multiplicity="1" />
+          <End Role="BDVisitPrice" Type="CenterReservationModel.BDVisitPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BDVisitType">
+              <PropertyRef Name="VisitTypeID" />
+            </Principal>
+            <Dependent Role="BDVisitPrice">
+              <PropertyRef Name="VisitTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANVisit_BDVisitType">
+          <End Role="BDVisitType" Type="CenterReservationModel.BDVisitType" Multiplicity="1" />
+          <End Role="TRANVisit" Type="CenterReservationModel.TRANVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BDVisitType">
+              <PropertyRef Name="VisitTypeID" />
+            </Principal>
+            <Dependent Role="TRANVisit">
+              <PropertyRef Name="VisitTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CenterReservationModelStoreContainer" CdmEntityContainer="CenterReservationEntities">
+          <EntitySetMapping Name="ACPatients">
+            <EntityTypeMapping TypeName="CenterReservationModel.ACPatient">
+              <MappingFragment StoreEntitySet="ACPatient">
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDPhysicians">
+            <EntityTypeMapping TypeName="CenterReservationModel.BDPhysician">
+              <MappingFragment StoreEntitySet="BDPhysician">
+                <ScalarProperty Name="PhysicianID" ColumnName="PhysicianID" />
+                <ScalarProperty Name="PhysicianName" ColumnName="PhysicianName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDPhysicianSalaries">
+            <EntityTypeMapping TypeName="CenterReservationModel.BDPhysicianSalary">
+              <MappingFragment StoreEntitySet="BDPhysicianSalary">
+                <ScalarProperty Name="PhysicianPriceID" ColumnName="PhysicianPriceID" />
+                <ScalarProperty Name="PhysicianID" ColumnName="PhysicianID" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="PhysicianSalary" ColumnName="PhysicianSalary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDVisitPrices">
+            <EntityTypeMapping TypeName="CenterReservationModel.BDVisitPrice">
+              <MappingFragment StoreEntitySet="BDVisitPrice">
+                <ScalarProperty Name="VisitPriceID" ColumnName="VisitPriceID" />
+                <ScalarProperty Name="VisitTypeID" ColumnName="VisitTypeID" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="VisitPrice" ColumnName="VisitPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BDVisitTypes">
+            <EntityTypeMapping TypeName="CenterReservationModel.BDVisitType">
+              <MappingFragment StoreEntitySet="BDVisitType">
+                <ScalarProperty Name="VisitTypeID" ColumnName="VisitTypeID" />
+                <ScalarProperty Name="VisitTypeName" ColumnName="VisitTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANVisits">
+            <EntityTypeMapping TypeName="CenterReservationModel.TRANVisit">
+              <MappingFragment StoreEntitySet="TRANVisit">
+                <ScalarProperty Name="VisitID" ColumnName="VisitID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PhysicianID" ColumnName="PhysicianID" />
+                <ScalarProperty Name="VisitTypeID" ColumnName="VisitTypeID" />
+                <ScalarProperty Name="VisitDate" ColumnName="VisitDate" />
+                <ScalarProperty Name="VisitPrice" ColumnName="VisitPrice" />
+                <ScalarProperty Name="PhysicianSalary" ColumnName="PhysicianSalary" />
+                <ScalarProperty Name="VisitsCount" ColumnName="VisitsCount" />
+                <ScalarProperty Name="TotalVisitPrice" ColumnName="TotalVisitPrice" />
+                <ScalarProperty Name="Paiedprice" ColumnName="Paiedprice" />
+                <ScalarProperty Name="RestPrice" ColumnName="RestPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
