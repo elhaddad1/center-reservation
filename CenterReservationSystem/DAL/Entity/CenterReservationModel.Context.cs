@@ -12,6 +12,7 @@ namespace CenterReservation.DL.Entity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using CenterReservation.DL.DomainModel;
     
     public partial class CenterReservationEntities : DbContext
     {

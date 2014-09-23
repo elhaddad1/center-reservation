@@ -7,23 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CenterReservation.DL.Entity
+namespace CenterReservation.DL.DomainModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class BDVisitType
+    public partial class ACPatient
     {
-        public BDVisitType()
+        public ACPatient()
         {
-            this.BDVisitPrices = new HashSet<BDVisitPrice>();
             this.TRANVisits = new HashSet<TRANVisit>();
         }
     
-        public int VisitTypeID { get; set; }
-        public string VisitTypeName { get; set; }
+        public int PatientID { get; set; }
+        public string PatientName { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
+        public Nullable<int> Age { get; set; }
     
-        public virtual ICollection<BDVisitPrice> BDVisitPrices { get; set; }
         public virtual ICollection<TRANVisit> TRANVisits { get; set; }
     }
 }

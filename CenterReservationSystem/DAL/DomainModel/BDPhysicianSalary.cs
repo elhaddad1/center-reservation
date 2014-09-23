@@ -7,23 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CenterReservation.DL.Entity
+namespace CenterReservation.DL.DomainModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class BDPhysician
+    public partial class BDPhysicianSalary
     {
-        public BDPhysician()
-        {
-            this.BDPhysicianSalaries = new HashSet<BDPhysicianSalary>();
-            this.TRANVisits = new HashSet<TRANVisit>();
-        }
-    
+        public int PhysicianPriceID { get; set; }
         public int PhysicianID { get; set; }
-        public string PhysicianName { get; set; }
+        public System.DateTime FromDate { get; set; }
+        public System.DateTime ToDate { get; set; }
+        public decimal PhysicianSalary { get; set; }
     
-        public virtual ICollection<BDPhysicianSalary> BDPhysicianSalaries { get; set; }
-        public virtual ICollection<TRANVisit> TRANVisits { get; set; }
+        public virtual BDPhysician BDPhysician { get; set; }
     }
 }

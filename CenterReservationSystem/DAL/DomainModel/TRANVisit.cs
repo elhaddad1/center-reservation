@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CenterReservation.DL.Entity
+namespace CenterReservation.DL.DomainModel
 {
     using System;
     using System.Collections.Generic;
