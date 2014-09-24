@@ -35,6 +35,7 @@
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Back = new System.Windows.Forms.Button();
             this.btn_Delete = new System.Windows.Forms.Button();
+            this.tbx_PhysicianName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -62,6 +63,7 @@
             this.btn_Add.TabIndex = 2;
             this.btn_Add.Text = "أضافة";
             this.btn_Add.UseVisualStyleBackColor = true;
+            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
             // 
             // btn_Edit
             // 
@@ -71,6 +73,7 @@
             this.btn_Edit.TabIndex = 3;
             this.btn_Edit.Text = "تعديل";
             this.btn_Edit.UseVisualStyleBackColor = true;
+            this.btn_Edit.Click += new System.EventHandler(this.btn_Edit_Click);
             // 
             // btn_Save
             // 
@@ -80,6 +83,7 @@
             this.btn_Save.TabIndex = 4;
             this.btn_Save.Text = "حفظ";
             this.btn_Save.UseVisualStyleBackColor = true;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
             // btn_Back
             // 
@@ -89,6 +93,7 @@
             this.btn_Back.TabIndex = 5;
             this.btn_Back.Text = "عودة";
             this.btn_Back.UseVisualStyleBackColor = true;
+            this.btn_Back.Click += new System.EventHandler(this.btn_Back_Click);
             // 
             // btn_Delete
             // 
@@ -98,12 +103,21 @@
             this.btn_Delete.TabIndex = 6;
             this.btn_Delete.Text = "حذف";
             this.btn_Delete.UseVisualStyleBackColor = true;
+            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
+            // 
+            // tbx_PhysicianName
+            // 
+            this.tbx_PhysicianName.Location = new System.Drawing.Point(207, 45);
+            this.tbx_PhysicianName.Name = "tbx_PhysicianName";
+            this.tbx_PhysicianName.Size = new System.Drawing.Size(282, 20);
+            this.tbx_PhysicianName.TabIndex = 7;
             // 
             // FrmPhysician
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 158);
+            this.Controls.Add(this.tbx_PhysicianName);
             this.Controls.Add(this.btn_Delete);
             this.Controls.Add(this.btn_Back);
             this.Controls.Add(this.btn_Save);
@@ -131,5 +145,6 @@
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.Button btn_Back;
         private System.Windows.Forms.Button btn_Delete;
+        private System.Windows.Forms.TextBox tbx_PhysicianName;
     }
 }
