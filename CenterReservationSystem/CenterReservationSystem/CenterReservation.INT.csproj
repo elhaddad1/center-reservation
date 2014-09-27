@@ -96,6 +96,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL\CenterReservation.DL.csproj">
+      <Project>{2f195fb6-f7af-44c9-b638-f4fe809895ab}</Project>
+      <Name>CenterReservation.DL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DomainService\CenterReservation.BL.csproj">
       <Project>{3c60f98a-91e3-413d-a423-5993e7b2020c}</Project>
       <Name>CenterReservation.BL</Name>

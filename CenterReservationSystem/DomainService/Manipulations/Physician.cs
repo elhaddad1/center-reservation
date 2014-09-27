@@ -8,13 +8,13 @@ using CenterReservation.DL.Entity;
 using CenterReservation.DL.DomainModel;
 namespace CenterReservation.BL.Manipulations
 {
-    class Physician
+    public class Physician
     {
 
 
         private CenterReservationEntities _contextDatabase;
 
-        Physician()
+        public Physician()
         {
             this._contextDatabase = new CenterReservationEntities();
         }
@@ -23,6 +23,12 @@ namespace CenterReservation.BL.Manipulations
         {
             return _contextDatabase.BDPhysicians.Add(_bDPhysician);
         }
+
+        public List<BDPhysician> SelectAllBDPhysician()
+        {
+            return _contextDatabase.BDPhysicians.ToList();
+        }
+
 
     }
 

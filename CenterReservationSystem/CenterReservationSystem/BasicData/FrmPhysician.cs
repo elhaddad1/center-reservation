@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using CenterReservation.BL.Manipulations;
 namespace CenterReservation.INT.BasicData
 {
     public partial class FrmPhysician : Form
@@ -67,6 +67,8 @@ namespace CenterReservation.INT.BasicData
         {
             Mode = "Select";
             ControlUI("Select");
+            Physician ph = new Physician();
+            var x = ph.SelectAllBDPhysician();
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
