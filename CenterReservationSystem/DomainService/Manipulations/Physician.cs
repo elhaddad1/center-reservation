@@ -6,11 +6,22 @@ using System.Threading.Tasks;
 using System.Linq;
 using CenterReservation.DL.Entity;
 using CenterReservation.DL.DomainModel;
+using CenterReservation.BL.DataContract;
 namespace CenterReservation.BL.Manipulations
 {
     class Physician
     {
-        CenterReservationEntities context11 = new CenterReservationEntities();
+        //public List<BDPhsycian> LoadAllPhysucians()
+        //{
+        //    //List<BDPhsycian> PhysicianList = new List<BDPhsycian>();
+        //    //BDPhysician b= new BDPhysician();
+        //    //foreach (var x in b )
+        //    //{
+ 
+        //    //}
+
+
+        //}
 
     }
 
