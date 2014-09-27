@@ -57,10 +57,19 @@
     <Compile Include="BasicData\FrmPhysician.Designer.cs">
       <DependentUpon>FrmPhysician.cs</DependentUpon>
     </Compile>
+    <Compile Include="BasicData\FrmPhysicianSalary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BasicData\FrmPhysicianSalary.Designer.cs">
+      <DependentUpon>FrmPhysicianSalary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BasicData\FrmPhysician.resx">
       <DependentUpon>FrmPhysician.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BasicData\FrmPhysicianSalary.resx">
+      <DependentUpon>FrmPhysicianSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
