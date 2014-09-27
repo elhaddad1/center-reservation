@@ -10,7 +10,19 @@ namespace CenterReservation.BL.Manipulations
 {
     class Physician
     {
-        CenterReservationEntities context11 = new CenterReservationEntities();
+
+
+        private CenterReservationEntities _contextDatabase;
+
+        Physician()
+        {
+            this._contextDatabase = new CenterReservationEntities();
+        }
+
+        public BDPhysician addBDPhysician(BDPhysician _bDPhysician)
+        {
+            return _contextDatabase.BDPhysicians.Add(_bDPhysician);
+        }
 
     }
 
