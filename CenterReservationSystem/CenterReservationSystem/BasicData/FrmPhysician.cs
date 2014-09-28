@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CenterReservation.BL.Manipulations;
+using CenterReservation.BL.DataContract;
 namespace CenterReservation.INT.BasicData
 {
     public partial class FrmPhysician : Form
     {
         string Mode = "Select";
+        Physician physician = new Physician();
+        BDPhsycian _SelectedPhysician;
         public FrmPhysician()
         {
             InitializeComponent();
@@ -67,8 +70,8 @@ namespace CenterReservation.INT.BasicData
         {
             Mode = "Select";
             ControlUI("Select");
-            Physician ph = new Physician();
-            var x = ph.SelectAllBDPhysician();
+
+            var x = physician.SelectAllBDPhysician();
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
@@ -90,6 +93,17 @@ namespace CenterReservation.INT.BasicData
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
+            if (Mode == "Add")
+            {
+                BDPhsycian _bdphysician = new BDPhsycian();
+                _bdphysician.PhysicianName = tbx_PhysicianName.Text.ToString();
+                physician.addBDPhysician(_bdphysician);
+            }
+            else if (Mode == "Edit")
+            {
+                _SelectedPhysician.PhysicianName = tbx_PhysicianName.Text.ToString();
+                physician.addBDPhysician(_SelectedPhysician);
+            }
             ControlUI("Select");
             Mode = "Select";
         }

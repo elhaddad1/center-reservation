@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CenterReservation.BL.DataContract
 {
-    class BDPhsycian
+    public class BDPhsycian
     {
-        int PhysicianID { get; set; }
-        string PhysicianName { get; set; }
+        public int PhysicianID { get; set; }
+        public string PhysicianName { get; set; }
     }
 }
