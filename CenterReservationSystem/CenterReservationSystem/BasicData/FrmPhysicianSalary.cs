@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CenterReservation.BL.Manipulations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -61,22 +62,25 @@ namespace CenterReservation.INT.BasicData
 
         #region
         //Events
-        private void FrmPhysician_Load(object sender, EventArgs e)
+        private void FrmPhysicianSalary_Load(object sender, EventArgs e)
         {
             Mode = "Select";
             ControlUI("Select");
+            fillDrobdown();
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
             Mode = "Change";
             ControlUI("Add");
+            fillGrid();
         }
 
         private void btn_Edit_Click(object sender, EventArgs e)
         {
             Mode = "Change";
             ControlUI("Edit");
+            fillGrid();
         }
 
         private void btn_Delete_Click(object sender, EventArgs e)
@@ -103,6 +107,57 @@ namespace CenterReservation.INT.BasicData
             }
         }
 
+        private void cbx_PhysicianName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fillGrid();
+        }
         #endregion
+
+        private void fillGrid()
+        {
+            try
+            {
+                int code = 0;
+                int.TryParse(cbx_PhysicianName.SelectedValue.ToString(), out code);
+                if (code == 0)
+                    return;
+                PhysicianSalary newObj = new PhysicianSalary();
+                dataGridView1.DataSource = null;
+                var query = newObj.GetAll().Where(a => a.PhysicianID == code).OrderBy(a => a.PhysicianPriceID).ToList();
+                dataGridView1.AutoGenerateColumns = false;
+                var queryGrid = (from v in query
+                                 select new
+                                 {
+                                     From = v.FromDate != null ? v.FromDate.ToShortDateString() : "",
+                                     To = v.ToDate != null ? v.ToDate.ToShortDateString() : "",
+                                     Price = Convert.ToString(v.PhysicianSalary)
+                                 }).ToList();
+                dataGridView1.DataSource = query;
+                dataGridView1.Columns[0].DataPropertyName = "Price";
+                dataGridView1.Columns[1].DataPropertyName = "From";
+                dataGridView1.Columns[2].DataPropertyName = "To";
+            }
+            catch (Exception ex)
+            {
+                 throw;
+            }
+        }
+
+
+        private void fillDrobdown()
+        {
+            try
+            {
+                Physician newObj = new Physician();
+                cbx_PhysicianName.DataSource = newObj.SelectAllBDPhysician();
+                cbx_PhysicianName.DisplayMember = "PhysicianName";
+                cbx_PhysicianName.ValueMember = "PhysicianID";
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

@@ -42,13 +42,18 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.From = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.To = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_Delete
             // 
-            this.btn_Delete.Location = new System.Drawing.Point(325, 202);
+            this.btn_Delete.Location = new System.Drawing.Point(319, 441);
             this.btn_Delete.Name = "btn_Delete";
             this.btn_Delete.Size = new System.Drawing.Size(79, 47);
             this.btn_Delete.TabIndex = 14;
@@ -58,7 +63,7 @@
             // 
             // btn_Back
             // 
-            this.btn_Back.Location = new System.Drawing.Point(499, 202);
+            this.btn_Back.Location = new System.Drawing.Point(493, 441);
             this.btn_Back.Name = "btn_Back";
             this.btn_Back.Size = new System.Drawing.Size(79, 47);
             this.btn_Back.TabIndex = 13;
@@ -68,7 +73,7 @@
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(412, 202);
+            this.btn_Save.Location = new System.Drawing.Point(406, 441);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(79, 47);
             this.btn_Save.TabIndex = 12;
@@ -78,7 +83,7 @@
             // 
             // btn_Edit
             // 
-            this.btn_Edit.Location = new System.Drawing.Point(238, 202);
+            this.btn_Edit.Location = new System.Drawing.Point(232, 441);
             this.btn_Edit.Name = "btn_Edit";
             this.btn_Edit.Size = new System.Drawing.Size(79, 47);
             this.btn_Edit.TabIndex = 11;
@@ -88,7 +93,7 @@
             // 
             // btn_Add
             // 
-            this.btn_Add.Location = new System.Drawing.Point(151, 202);
+            this.btn_Add.Location = new System.Drawing.Point(145, 441);
             this.btn_Add.Name = "btn_Add";
             this.btn_Add.Size = new System.Drawing.Size(79, 47);
             this.btn_Add.TabIndex = 10;
@@ -103,6 +108,7 @@
             this.cbx_PhysicianName.Name = "cbx_PhysicianName";
             this.cbx_PhysicianName.Size = new System.Drawing.Size(282, 21);
             this.cbx_PhysicianName.TabIndex = 9;
+            this.cbx_PhysicianName.SelectedIndexChanged += new System.EventHandler(this.cbx_PhysicianName_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -174,11 +180,50 @@
             this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDown2.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Price,
+            this.From,
+            this.To});
+            this.dataGridView1.GridColor = System.Drawing.Color.Black;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 182);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(698, 253);
+            this.dataGridView1.TabIndex = 22;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "السعر";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // From
+            // 
+            this.From.HeaderText = "من";
+            this.From.Name = "From";
+            this.From.ReadOnly = true;
+            // 
+            // To
+            // 
+            this.To.HeaderText = "الى";
+            this.To.Name = "To";
+            this.To.ReadOnly = true;
+            // 
             // FrmPhysicianSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 284);
+            this.ClientSize = new System.Drawing.Size(722, 500);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.numericUpDown2);
@@ -197,8 +242,10 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.Text = "FrmPhysicianSalary";
+            this.Load += new System.EventHandler(this.FrmPhysicianSalary_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,5 +267,9 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn From;
+        private System.Windows.Forms.DataGridViewTextBoxColumn To;
     }
 }
