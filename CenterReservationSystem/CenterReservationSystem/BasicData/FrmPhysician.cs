@@ -15,10 +15,16 @@ namespace CenterReservation.INT.BasicData
     {
         string Mode = "Select";
         Physician physician = new Physician();
-        BDPhsycian _SelectedPhysician;
+        BDPhsycian _SelectedPhysician = new BDPhsycian();
         public FrmPhysician()
         {
+
             InitializeComponent();
+            //cbx_PhysicianName.SelectedIndex = 0;
+            Mode = "Select";
+            ControlUI("Select");
+            FillPhysicianCombo();
+
         }
 
 
@@ -27,10 +33,7 @@ namespace CenterReservation.INT.BasicData
         //Events
         private void FrmPhysician_Load(object sender, EventArgs e)
         {
-            Mode = "Select";
-            ControlUI("Select");
-            FillPhysicianCombo();
-            cbx_PhysicianName.SelectedIndex = -1;
+
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
@@ -134,15 +137,21 @@ namespace CenterReservation.INT.BasicData
             cbx_PhysicianName.DataSource = physician.SelectAllBDPhysician();
             cbx_PhysicianName.DisplayMember = "PhysicianName";
             cbx_PhysicianName.ValueMember = "PhysicianID";
-
+            cbx_PhysicianName.SelectedIndex = 0;
+            cbx_PhysicianName_SelectedIndexChanged(cbx_PhysicianName, new EventArgs());
         }
 
         private void cbx_PhysicianName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbx_PhysicianName.SelectedIndex != -1)
-            {
-                _SelectedPhysician.PhysicianID = Convert.ToInt32(cbx_PhysicianName.ValueMember);
-            }
+
+
+            int code = 0;
+            int.TryParse(cbx_PhysicianName.SelectedValue.ToString(), out code);
+            if (code == 0)
+                return;
+
+            _SelectedPhysician.PhysicianID = code;
+
         }
 
     }

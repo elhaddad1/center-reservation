@@ -22,7 +22,7 @@ namespace CenterReservation.BL.Manipulations
 
         public void addBDPhysician(BDPhsycian Physician)
         {
-            var Query = _contextDatabase.BDPhysicians.Where(a => a.PhysicianID == Physician.PhysicianID).First();
+            var Query = _contextDatabase.BDPhysicians.Where(a => a.PhysicianID == Physician.PhysicianID).FirstOrDefault();
             if (Query != null)
             {
                 Query.PhysicianName = Physician.PhysicianName;
