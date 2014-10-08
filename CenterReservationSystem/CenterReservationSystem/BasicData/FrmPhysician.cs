@@ -21,48 +21,7 @@ namespace CenterReservation.INT.BasicData
             InitializeComponent();
         }
 
-        public void ControlUI(string order)
-        {
-            if (order == "Select")
-            {
-                // Default behavior
-                btn_Save.Enabled = false;
-                btn_Add.Enabled = true;
-                btn_Edit.Enabled = true;
-                btn_Back.Enabled = true;
-                btn_Delete.Enabled = true;
 
-                //exception behavior
-                tbx_PhysicianName.Visible = false;
-                cbx_PhysicianName.Visible = true;
-
-            }
-            else if (order == "Add")
-            {
-                // Default behaior
-                btn_Add.Enabled = false;
-                btn_Edit.Enabled = false;
-                btn_Delete.Enabled = false;
-                btn_Save.Enabled = true;
-
-                // exception behavior
-
-                cbx_PhysicianName.Visible = false;
-                tbx_PhysicianName.Visible = true;
-            }
-            else if (order == "Edit")
-            {
-                // Default behaior
-                btn_Add.Enabled = false;
-                btn_Edit.Enabled = false;
-                btn_Delete.Enabled = false;
-                btn_Save.Enabled = true;
-                // exception behavior
-
-                cbx_PhysicianName.Visible = false;
-                tbx_PhysicianName.Visible = true;
-            }
-        }
 
         #region
         //Events
@@ -71,7 +30,7 @@ namespace CenterReservation.INT.BasicData
             Mode = "Select";
             ControlUI("Select");
 
-            var x = physician.SelectAllBDPhysician();
+            FillPhysicianCombo();
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
@@ -122,5 +81,57 @@ namespace CenterReservation.INT.BasicData
         }
 
         #endregion
+
+        public void ControlUI(string order)
+        {
+            if (order == "Select")
+            {
+                // Default behavior
+                btn_Save.Enabled = false;
+                btn_Add.Enabled = true;
+                btn_Edit.Enabled = true;
+                btn_Back.Enabled = true;
+                btn_Delete.Enabled = true;
+
+                //exception behavior
+                tbx_PhysicianName.Visible = false;
+                cbx_PhysicianName.Visible = true;
+
+            }
+            else if (order == "Add")
+            {
+                // Default behaior
+                btn_Add.Enabled = false;
+                btn_Edit.Enabled = false;
+                btn_Delete.Enabled = false;
+                btn_Save.Enabled = true;
+
+                // exception behavior
+
+                cbx_PhysicianName.Visible = false;
+                tbx_PhysicianName.Visible = true;
+            }
+            else if (order == "Edit")
+            {
+                // Default behaior
+                btn_Add.Enabled = false;
+                btn_Edit.Enabled = false;
+                btn_Delete.Enabled = false;
+                btn_Save.Enabled = true;
+                // exception behavior
+
+                cbx_PhysicianName.Visible = false;
+                tbx_PhysicianName.Visible = true;
+            }
+        }
+
+        public void FillPhysicianCombo()
+        {
+            cbx_PhysicianName.DataSource = physician.SelectAllBDPhysician();
+            cbx_PhysicianName.DisplayMember = "PhysicianName";
+            cbx_PhysicianName.ValueMember = "PhysicianID";
+
+        }
+
     }
 }
