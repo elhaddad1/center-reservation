@@ -108,6 +108,7 @@
             this.cbx_PhysicianName.Name = "cbx_PhysicianName";
             this.cbx_PhysicianName.Size = new System.Drawing.Size(282, 21);
             this.cbx_PhysicianName.TabIndex = 9;
+            this.cbx_PhysicianName.Text = "إختار اسم الطبيب";
             this.cbx_PhysicianName.SelectedIndexChanged += new System.EventHandler(this.cbx_PhysicianName_SelectedIndexChanged);
             // 
             // label1
@@ -182,8 +183,6 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
