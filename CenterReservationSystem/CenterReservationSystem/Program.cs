@@ -16,7 +16,7 @@ namespace CenterReservation.INT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmPhysician());
+            Application.Run(new frm_MainWindow());
         }
     }
 }
