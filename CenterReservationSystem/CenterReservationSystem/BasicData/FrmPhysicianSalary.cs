@@ -1,4 +1,5 @@
 ﻿using CenterReservation.BL.Manipulations;
+using CenterReservation.DL.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,8 @@ namespace CenterReservation.INT.BasicData
     public partial class FrmPhysicianSalary : Form
     {
         string Mode = "Select";
-
+        private static PhysicianSalaryModel newObjPhysicianSalaryModel = new PhysicianSalaryModel();
+        private static Physician newObjPhysician = new Physician();
         public FrmPhysicianSalary()
         {
             InitializeComponent();
@@ -60,6 +62,25 @@ namespace CenterReservation.INT.BasicData
             }
         }
 
+        private BDPhysicianSalary ObjectFromUI()
+        {
+            BDPhysicianSalary newObj = new BDPhysicianSalary();
+            newObj.FromDate = dateTimePicker1.Value;
+            newObj.ToDate = dateTimePicker2.Value;
+            newObj.PhysicianSalary = numericUpDown2.Value;
+            newObj.PhysicianID = int.Parse(cbx_PhysicianName.SelectedValue.ToString());
+            return newObj;
+        }
+
+
+        private void ObjectToUI(BDPhysicianSalary newObj)
+        {
+            dateTimePicker1.Value = newObj.FromDate;
+            dateTimePicker2.Value = newObj.ToDate;
+            numericUpDown2.Value = newObj.PhysicianSalary;
+            cbx_PhysicianName.SelectedValue = newObj.PhysicianID;
+        }
+
         #region
         //Events
         private void FrmPhysicianSalary_Load(object sender, EventArgs e)
@@ -67,6 +88,7 @@ namespace CenterReservation.INT.BasicData
             Mode = "Select";
             ControlUI("Select");
             fillDrobdown();
+            fillGrid();
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
@@ -90,8 +112,9 @@ namespace CenterReservation.INT.BasicData
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            ControlUI("Select");
-            Mode = "Select";
+                newObjPhysicianSalaryModel.Add(ObjectFromUI());
+                ControlUI("Select");
+                Mode = "Select";
         }
 
         private void btn_Back_Click(object sender, EventArgs e)
@@ -121,9 +144,8 @@ namespace CenterReservation.INT.BasicData
                 int.TryParse(cbx_PhysicianName.SelectedValue.ToString(), out code);
                 if (code == 0)
                     return;
-                PhysicianSalary newObj = new PhysicianSalary();
                 dataGridView1.DataSource = null;
-                var query = newObj.GetAll().Where(a => a.PhysicianID == code).OrderBy(a => a.PhysicianPriceID).ToList();
+                List<BDPhysicianSalary> query = newObjPhysicianSalaryModel.FindByPhysicianCode(code).ToList();
                 dataGridView1.AutoGenerateColumns = false;
                 var queryGrid = (from v in query
                                  select new
@@ -132,7 +154,7 @@ namespace CenterReservation.INT.BasicData
                                      To = v.ToDate != null ? v.ToDate.ToShortDateString() : "",
                                      Price = Convert.ToString(v.PhysicianSalary)
                                  }).ToList();
-                dataGridView1.DataSource = query;
+                dataGridView1.DataSource = queryGrid;
                 dataGridView1.Columns[0].DataPropertyName = "Price";
                 dataGridView1.Columns[1].DataPropertyName = "From";
                 dataGridView1.Columns[2].DataPropertyName = "To";
@@ -148,8 +170,7 @@ namespace CenterReservation.INT.BasicData
         {
             try
             {
-                Physician newObj = new Physician();
-                cbx_PhysicianName.DataSource = newObj.SelectAllBDPhysician();
+                cbx_PhysicianName.DataSource = newObjPhysician.SelectAllBDPhysician().ToList();
                 cbx_PhysicianName.DisplayMember = "PhysicianName";
                 cbx_PhysicianName.ValueMember = "PhysicianID";
             }

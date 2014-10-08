@@ -9,20 +9,19 @@ using CenterReservation.DL.DomainModel;
 using CenterReservation.BL.DataContract;
 namespace CenterReservation.BL.Manipulations
 {
-    public class PhysicianSalary
+    public class PhysicianSalaryModel
     {
 
 
         public CenterReservationEntities _contextDatabase;
 
-        public PhysicianSalary()
+        public PhysicianSalaryModel()
         {
             this._contextDatabase = new CenterReservationEntities();
         }
 
-        public BDPhysicianSalary Add(BDPhsycian PhysicianSalary)
+        public BDPhysicianSalary Add(BDPhysicianSalary _bDPhysicianSalary)
         {
-            BDPhysicianSalary _bDPhysicianSalary = new BDPhysicianSalary();
             return _contextDatabase.BDPhysicianSalaries.Add(_bDPhysicianSalary);
         }
 
@@ -31,9 +30,9 @@ namespace CenterReservation.BL.Manipulations
             return _contextDatabase.BDPhysicianSalaries;
         }
 
-        public BDPhysicianSalary Find(params object[] keyValues)
+        public IQueryable<BDPhysicianSalary> FindByPhysicianCode(int code)
         {
-            return _contextDatabase.BDPhysicianSalaries.Find(keyValues);
+            return _contextDatabase.BDPhysicianSalaries.Where(a => a.PhysicianID == code).OrderBy(a => a.PhysicianPriceID);
         }
 
 
