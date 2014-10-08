@@ -54,6 +54,7 @@
             this.cbx_PhysicianName.Name = "cbx_PhysicianName";
             this.cbx_PhysicianName.Size = new System.Drawing.Size(282, 21);
             this.cbx_PhysicianName.TabIndex = 1;
+            this.cbx_PhysicianName.SelectedIndexChanged += new System.EventHandler(this.cbx_PhysicianName_SelectedIndexChanged);
             // 
             // btn_Add
             // 

@@ -29,19 +29,19 @@ namespace CenterReservation.INT.BasicData
         {
             Mode = "Select";
             ControlUI("Select");
-
             FillPhysicianCombo();
+            cbx_PhysicianName.SelectedIndex = -1;
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            Mode = "Change";
+            Mode = "Add";
             ControlUI("Add");
         }
 
         private void btn_Edit_Click(object sender, EventArgs e)
         {
-            Mode = "Change";
+            Mode = "Edit";
             ControlUI("Edit");
         }
 
@@ -57,11 +57,13 @@ namespace CenterReservation.INT.BasicData
                 BDPhsycian _bdphysician = new BDPhsycian();
                 _bdphysician.PhysicianName = tbx_PhysicianName.Text.ToString();
                 physician.addBDPhysician(_bdphysician);
+                FillPhysicianCombo();
             }
             else if (Mode == "Edit")
             {
                 _SelectedPhysician.PhysicianName = tbx_PhysicianName.Text.ToString();
                 physician.addBDPhysician(_SelectedPhysician);
+                FillPhysicianCombo();
             }
             ControlUI("Select");
             Mode = "Select";
@@ -73,7 +75,7 @@ namespace CenterReservation.INT.BasicData
             {
                 this.Close();
             }
-            else if (Mode == "Change")
+            else if (Mode == "Add" || Mode == "Edit")
             {
                 ControlUI("Select");
                 Mode = "Select";
@@ -110,6 +112,7 @@ namespace CenterReservation.INT.BasicData
 
                 cbx_PhysicianName.Visible = false;
                 tbx_PhysicianName.Visible = true;
+                tbx_PhysicianName.Text = "";
             }
             else if (order == "Edit")
             {
@@ -122,6 +125,7 @@ namespace CenterReservation.INT.BasicData
 
                 cbx_PhysicianName.Visible = false;
                 tbx_PhysicianName.Visible = true;
+                tbx_PhysicianName.Text = "";
             }
         }
 
@@ -131,6 +135,14 @@ namespace CenterReservation.INT.BasicData
             cbx_PhysicianName.DisplayMember = "PhysicianName";
             cbx_PhysicianName.ValueMember = "PhysicianID";
 
+        }
+
+        private void cbx_PhysicianName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbx_PhysicianName.SelectedIndex != -1)
+            {
+                _SelectedPhysician.PhysicianID = Convert.ToInt32(cbx_PhysicianName.ValueMember);
+            }
         }
 
     }

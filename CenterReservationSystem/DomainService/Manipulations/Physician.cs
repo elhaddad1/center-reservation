@@ -20,17 +20,29 @@ namespace CenterReservation.BL.Manipulations
             this._contextDatabase = new CenterReservationEntities();
         }
 
-        public BDPhysician addBDPhysician(BDPhsycian Physician)
+        public void addBDPhysician(BDPhsycian Physician)
         {
-            BDPhysician _bDPhysician = new BDPhysician();
-            _bDPhysician.PhysicianName = Physician.PhysicianName;
-            return _contextDatabase.BDPhysicians.Add(_bDPhysician);
+            var Query = _contextDatabase.BDPhysicians.Where(a => a.PhysicianID == Physician.PhysicianID).First();
+            if (Query != null)
+            {
+                Query.PhysicianName = Physician.PhysicianName;
+                _contextDatabase.SaveChanges();
+            }
+            else
+            {
+                BDPhysician _bDPhysician = new BDPhysician();
+                _bDPhysician.PhysicianName = Physician.PhysicianName;
+                _contextDatabase.BDPhysicians.Add(_bDPhysician);
+                _contextDatabase.SaveChanges();
+            }
         }
 
         public List<BDPhysician> SelectAllBDPhysician()
         {
             return _contextDatabase.BDPhysicians.ToList();
         }
+
+        //  public 
 
 
     }
