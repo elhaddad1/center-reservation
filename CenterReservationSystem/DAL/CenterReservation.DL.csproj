@@ -139,6 +139,7 @@
   <ItemGroup>
     <Content Include="Data\EntityFramework.SqlServer.dll" />
     <Content Include="Data\ScriptSchemaanddata-09-21-2014.sql" />
+    <Content Include="Data\ScriptSchemaanddata-10-9-2014.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
