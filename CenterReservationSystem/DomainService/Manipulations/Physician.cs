@@ -20,20 +20,30 @@ namespace CenterReservation.BL.Manipulations
             this._contextDatabase = new CenterReservationEntities();
         }
 
-        public void addBDPhysician(BDPhsycian Physician)
+        public string addBDPhysician(BDPhsycian Physician)
         {
-            var Query = _contextDatabase.BDPhysicians.Where(a => a.PhysicianID == Physician.PhysicianID).FirstOrDefault();
-            if (Query != null)
+            try
             {
-                Query.PhysicianName = Physician.PhysicianName;
-                _contextDatabase.SaveChanges();
+                var Query = _contextDatabase.BDPhysicians.Where(a => a.PhysicianID == Physician.PhysicianID).FirstOrDefault();
+                if (Query != null)
+                {
+                    Query.PhysicianName = Physician.PhysicianName;
+                    _contextDatabase.SaveChanges();
+                    return "Added sucsessfully";
+                }
+                else
+                {
+                    BDPhysician _bDPhysician = new BDPhysician();
+                    _bDPhysician.PhysicianName = Physician.PhysicianName;
+                    _contextDatabase.BDPhysicians.Add(_bDPhysician);
+                    _contextDatabase.SaveChanges();
+                    return "Edited succesfuy";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                BDPhysician _bDPhysician = new BDPhysician();
-                _bDPhysician.PhysicianName = Physician.PhysicianName;
-                _contextDatabase.BDPhysicians.Add(_bDPhysician);
-                _contextDatabase.SaveChanges();
+                return "Erorr on add";
+                throw;
             }
         }
 
@@ -42,7 +52,20 @@ namespace CenterReservation.BL.Manipulations
             return _contextDatabase.BDPhysicians.ToList();
         }
 
-        //  public 
+        public string deleteDBPhysician(BDPhsycian Physician)
+        {
+            try
+            {
+                var _bDPhysician = _contextDatabase.BDPhysicians.Single(a => a.PhysicianID == Physician.PhysicianID);
+                _contextDatabase.BDPhysicians.Remove(_bDPhysician);
+                _contextDatabase.SaveChanges();
+                return "Sucessfully deleted";
+            }
+            catch (Exception ex)
+            {
+                return "Error on delete";
+            }
+        }
 
 
     }

@@ -50,7 +50,10 @@ namespace CenterReservation.INT.BasicData
 
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-
+            _SelectedPhysician.PhysicianName = cbx_PhysicianName.Text;
+            string _message = physician.deleteDBPhysician(_SelectedPhysician);
+            FillPhysicianCombo();
+            MessageBox.Show(_message);
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
@@ -59,14 +62,16 @@ namespace CenterReservation.INT.BasicData
             {
                 BDPhsycian _bdphysician = new BDPhsycian();
                 _bdphysician.PhysicianName = tbx_PhysicianName.Text.ToString();
-                physician.addBDPhysician(_bdphysician);
+                string _message = physician.addBDPhysician(_bdphysician);
                 FillPhysicianCombo();
+                MessageBox.Show(_message);
             }
             else if (Mode == "Edit")
             {
                 _SelectedPhysician.PhysicianName = tbx_PhysicianName.Text.ToString();
-                physician.addBDPhysician(_SelectedPhysician);
+                string _message = physician.addBDPhysician(_SelectedPhysician);
                 FillPhysicianCombo();
+                MessageBox.Show(_message);
             }
             ControlUI("Select");
             Mode = "Select";
