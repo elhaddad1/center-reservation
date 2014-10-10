@@ -32,6 +32,7 @@
             this.البياناتالرئيسيةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddEditPhysicianWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.PhysicianPriceWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.VisitTypeWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +50,8 @@
             // 
             this.البياناتالرئيسيةToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddEditPhysicianWindow,
-            this.PhysicianPriceWindow});
+            this.PhysicianPriceWindow,
+            this.VisitTypeWindow});
             this.البياناتالرئيسيةToolStripMenuItem.Name = "البياناتالرئيسيةToolStripMenuItem";
             this.البياناتالرئيسيةToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.البياناتالرئيسيةToolStripMenuItem.Text = "البيانات الرئيسية";
@@ -66,6 +68,13 @@
             this.PhysicianPriceWindow.Name = "PhysicianPriceWindow";
             this.PhysicianPriceWindow.Size = new System.Drawing.Size(174, 22);
             this.PhysicianPriceWindow.Text = "سعر الأخصائى";
+            // 
+            // VisitTypeWindow
+            // 
+            this.VisitTypeWindow.Name = "VisitTypeWindow";
+            this.VisitTypeWindow.Size = new System.Drawing.Size(174, 22);
+            this.VisitTypeWindow.Text = "أدخال وتعديل الزيارات";
+            this.VisitTypeWindow.Click += new System.EventHandler(this.VisitTypeWindow_Click);
             // 
             // frm_MainWindow
             // 
@@ -93,5 +102,6 @@
         private System.Windows.Forms.ToolStripMenuItem البياناتالرئيسيةToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AddEditPhysicianWindow;
         private System.Windows.Forms.ToolStripMenuItem PhysicianPriceWindow;
+        private System.Windows.Forms.ToolStripMenuItem VisitTypeWindow;
     }
 }

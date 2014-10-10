@@ -29,7 +29,7 @@ namespace CenterReservation.BL.Manipulations
                 {
                     Query.PhysicianName = Physician.PhysicianName;
                     _contextDatabase.SaveChanges();
-                    return "Added sucsessfully";
+                    return "تم الحفظ بنجاح";
                 }
                 else
                 {
@@ -37,12 +37,12 @@ namespace CenterReservation.BL.Manipulations
                     _bDPhysician.PhysicianName = Physician.PhysicianName;
                     _contextDatabase.BDPhysicians.Add(_bDPhysician);
                     _contextDatabase.SaveChanges();
-                    return "Edited succesfuy";
+                    return "تم الحفظ بنجاح";
                 }
             }
             catch (Exception ex)
             {
-                return "Erorr on add";
+                return "Erorr on save";
                 throw;
             }
         }
@@ -59,7 +59,7 @@ namespace CenterReservation.BL.Manipulations
                 var _bDPhysician = _contextDatabase.BDPhysicians.Single(a => a.PhysicianID == Physician.PhysicianID);
                 _contextDatabase.BDPhysicians.Remove(_bDPhysician);
                 _contextDatabase.SaveChanges();
-                return "Sucessfully deleted";
+                return "تم الحذف بنجاح";
             }
             catch (Exception ex)
             {

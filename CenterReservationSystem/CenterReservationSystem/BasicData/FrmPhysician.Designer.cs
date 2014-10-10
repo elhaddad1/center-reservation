@@ -129,7 +129,7 @@
             this.Name = "FrmPhysician";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "أضافة أخصائى";
             this.Load += new System.EventHandler(this.FrmPhysician_Load);
             this.ResumeLayout(false);

@@ -23,6 +23,12 @@ namespace CenterReservation.INT
             frm.ShowDialog();
         }
 
+        private void VisitTypeWindow_Click(object sender, EventArgs e)
+        {
+            BasicData.FrmVisitType frm = new BasicData.FrmVisitType();
+            frm.ShowDialog();
+        }
+
 
     }
 }

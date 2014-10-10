@@ -59,6 +59,7 @@
     <Compile Include="DataContract\BDPhsycian.cs" />
     <Compile Include="Manipulations\PhysicianSalary.cs" />
     <Compile Include="Manipulations\Physician.cs" />
+    <Compile Include="Manipulations\VisitType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

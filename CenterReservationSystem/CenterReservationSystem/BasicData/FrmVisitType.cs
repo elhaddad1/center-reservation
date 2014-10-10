@@ -9,35 +9,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CenterReservation.BL.Manipulations;
 using CenterReservation.BL.DataContract;
+
 namespace CenterReservation.INT.BasicData
 {
-    public partial class FrmPhysician : Form
+    public partial class FrmVisitType : Form
     {
-        #region
+        #region Public variables
         //Public variables
         string Mode = "Select";
-        Physician physician = new Physician();
-        BDPhsycian _SelectedPhysician = new BDPhsycian();
+        VisitType visitType = new VisitType();
+        VisitType _SelectedVisitType = new VisitType();
         #endregion
-
-        public FrmPhysician()
+        public FrmVisitType()
         {
-
             InitializeComponent();
-            //cbx_PhysicianName.SelectedIndex = 0;
             Mode = "Select";
             ControlUI("Select");
-            FillPhysicianCombo();
-
+            FillVisitTypeCombo();
         }
-
-        #region
+        #region Events
         //Events
-        private void FrmPhysician_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_Add_Click(object sender, EventArgs e)
         {
             Mode = "Add";
@@ -52,9 +43,9 @@ namespace CenterReservation.INT.BasicData
 
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-            _SelectedPhysician.PhysicianName = cbx_PhysicianName.Text;
-            string _message = physician.deleteDBPhysician(_SelectedPhysician);
-            FillPhysicianCombo();
+            _SelectedVisitType.VisitTypeName = cbx_VisitName.Text;
+            string _message = visitType.deleteBDVisitType(_SelectedVisitType);
+            FillVisitTypeCombo();
             MessageBox.Show(_message);
         }
 
@@ -62,17 +53,17 @@ namespace CenterReservation.INT.BasicData
         {
             if (Mode == "Add")
             {
-                BDPhsycian _bdphysician = new BDPhsycian();
-                _bdphysician.PhysicianName = tbx_PhysicianName.Text.ToString();
-                string _message = physician.addBDPhysician(_bdphysician);
-                FillPhysicianCombo();
+                VisitType _bdvisitType = new VisitType();
+                _bdvisitType.VisitTypeName = tbx_VisitName.Text.ToString();
+                string _message = _bdvisitType.addBDVisitType(_bdvisitType);
+                FillVisitTypeCombo();
                 MessageBox.Show(_message);
             }
             else if (Mode == "Edit")
             {
-                _SelectedPhysician.PhysicianName = tbx_PhysicianName.Text.ToString();
-                string _message = physician.addBDPhysician(_SelectedPhysician);
-                FillPhysicianCombo();
+                _SelectedVisitType.VisitTypeName = tbx_VisitName.Text.ToString();
+                string _message = visitType.addBDVisitType(_SelectedVisitType);
+                FillVisitTypeCombo();
                 MessageBox.Show(_message);
             }
             ControlUI("Select");
@@ -92,25 +83,23 @@ namespace CenterReservation.INT.BasicData
             }
         }
 
-        private void cbx_PhysicianName_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbx_VisitName_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (cbx_PhysicianName.SelectedIndex != -1)
+            if (cbx_VisitName.SelectedIndex != -1)
             {
                 int code = 0;
-                int.TryParse(cbx_PhysicianName.SelectedValue.ToString(), out code);
+                int.TryParse(cbx_VisitName.SelectedValue.ToString(), out code);
                 if (code == 0)
                     return;
 
-                _SelectedPhysician.PhysicianID = code;
+                _SelectedVisitType.VisitTypeID = code;
 
             }
         }
 
         #endregion
-
-
-        #region
+        #region Methods
         // Methods
         public void ControlUI(string order)
         {
@@ -124,8 +113,8 @@ namespace CenterReservation.INT.BasicData
                 btn_Delete.Enabled = true;
 
                 //exception behavior
-                tbx_PhysicianName.Visible = false;
-                cbx_PhysicianName.Visible = true;
+                tbx_VisitName.Visible = false;
+                cbx_VisitName.Visible = true;
 
             }
             else if (order == "Add")
@@ -138,9 +127,9 @@ namespace CenterReservation.INT.BasicData
 
                 // exception behavior
 
-                cbx_PhysicianName.Visible = false;
-                tbx_PhysicianName.Visible = true;
-                tbx_PhysicianName.Text = "";
+                cbx_VisitName.Visible = false;
+                tbx_VisitName.Visible = true;
+                tbx_VisitName.Text = "";
             }
             else if (order == "Edit")
             {
@@ -151,22 +140,20 @@ namespace CenterReservation.INT.BasicData
                 btn_Save.Enabled = true;
                 // exception behavior
 
-                cbx_PhysicianName.Visible = false;
-                tbx_PhysicianName.Visible = true;
-                tbx_PhysicianName.Text = cbx_PhysicianName.Text;
+                cbx_VisitName.Visible = false;
+                tbx_VisitName.Visible = true;
+                tbx_VisitName.Text = cbx_VisitName.Text;
             }
         }
 
-        public void FillPhysicianCombo()
+        public void FillVisitTypeCombo()
         {
-            cbx_PhysicianName.DataSource = physician.SelectAllBDPhysician();
-            cbx_PhysicianName.DisplayMember = "PhysicianName";
-            cbx_PhysicianName.ValueMember = "PhysicianID";
-            cbx_PhysicianName.SelectedIndex = -1;
-            cbx_PhysicianName_SelectedIndexChanged(cbx_PhysicianName, new EventArgs());
+            cbx_VisitName.DataSource = visitType.SelectAllBDVisitType();
+            cbx_VisitName.DisplayMember = "VisitTypeName";
+            cbx_VisitName.ValueMember = "VisitTypeID";
+            cbx_VisitName.SelectedIndex = -1;
+            cbx_VisitName_SelectedIndexChanged(cbx_VisitName, new EventArgs());
         }
         #endregion
-
-
     }
 }
