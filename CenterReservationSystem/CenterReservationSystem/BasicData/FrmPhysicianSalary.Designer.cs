@@ -31,7 +31,6 @@
             this.btn_Delete = new System.Windows.Forms.Button();
             this.btn_Back = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
-            this.btn_Edit = new System.Windows.Forms.Button();
             this.btn_Add = new System.Windows.Forms.Button();
             this.cbx_PhysicianName = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -83,19 +82,9 @@
             this.btn_Save.UseVisualStyleBackColor = true;
             this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
-            // btn_Edit
-            // 
-            this.btn_Edit.Location = new System.Drawing.Point(232, 441);
-            this.btn_Edit.Name = "btn_Edit";
-            this.btn_Edit.Size = new System.Drawing.Size(79, 47);
-            this.btn_Edit.TabIndex = 11;
-            this.btn_Edit.Text = "تعديل";
-            this.btn_Edit.UseVisualStyleBackColor = true;
-            this.btn_Edit.Click += new System.EventHandler(this.btn_Edit_Click);
-            // 
             // btn_Add
             // 
-            this.btn_Add.Location = new System.Drawing.Point(145, 441);
+            this.btn_Add.Location = new System.Drawing.Point(234, 441);
             this.btn_Add.Name = "btn_Add";
             this.btn_Add.Size = new System.Drawing.Size(79, 47);
             this.btn_Add.TabIndex = 10;
@@ -254,7 +243,6 @@
             this.Controls.Add(this.btn_Delete);
             this.Controls.Add(this.btn_Back);
             this.Controls.Add(this.btn_Save);
-            this.Controls.Add(this.btn_Edit);
             this.Controls.Add(this.btn_Add);
             this.Controls.Add(this.cbx_PhysicianName);
             this.Controls.Add(this.label1);
@@ -276,7 +264,6 @@
         private System.Windows.Forms.Button btn_Delete;
         private System.Windows.Forms.Button btn_Back;
         private System.Windows.Forms.Button btn_Save;
-        private System.Windows.Forms.Button btn_Edit;
         private System.Windows.Forms.Button btn_Add;
         private System.Windows.Forms.ComboBox cbx_PhysicianName;
         private System.Windows.Forms.Label label1;

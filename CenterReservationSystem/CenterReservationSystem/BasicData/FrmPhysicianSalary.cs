@@ -14,9 +14,10 @@ namespace CenterReservation.INT.BasicData
 {
     public partial class FrmPhysicianSalary : Form
     {
-        string Mode = "Select";
-        private static PhysicianSalaryModel newObjPhysicianSalaryModel = new PhysicianSalaryModel();
-        private static Physician newObjPhysician = new Physician();
+        private string Mode = "Select";
+        private PhysicianSalaryModel newObjPhysicianSalaryModel = new PhysicianSalaryModel();
+        private Physician newObjPhysician = new Physician();
+
         public FrmPhysicianSalary()
         {
             InitializeComponent();
@@ -29,7 +30,6 @@ namespace CenterReservation.INT.BasicData
                 // Default behavior
                 btn_Save.Enabled = false;
                 btn_Add.Enabled = true;
-                btn_Edit.Enabled = true;
                 btn_Back.Enabled = true;
                 btn_Delete.Enabled = true;
 
@@ -41,7 +41,6 @@ namespace CenterReservation.INT.BasicData
             {
                 // Default behaior
                 btn_Add.Enabled = false;
-                btn_Edit.Enabled = false;
                 btn_Delete.Enabled = false;
                 btn_Save.Enabled = true;
 
@@ -49,41 +48,13 @@ namespace CenterReservation.INT.BasicData
 
                 cbx_PhysicianName.Visible = false;
             }
-            else if (order == "Edit")
-            {
-                // Default behaior
-                btn_Add.Enabled = false;
-                btn_Edit.Enabled = false;
-                btn_Delete.Enabled = false;
-                btn_Save.Enabled = true;
-                // exception behavior
-
-                cbx_PhysicianName.Visible = false;
-            }
         }
 
-        private BDPhysicianSalary ObjectFromUI()
-        {
-            BDPhysicianSalary newObj = new BDPhysicianSalary();
-            newObj.PhysicianPriceID = int.Parse(txtId.Text);
-            newObj.FromDate = dateTimePicker1.Value;
-            newObj.ToDate = dateTimePicker2.Value;
-            newObj.PhysicianSalary = numericUpDown2.Value;
-            newObj.PhysicianID = int.Parse(cbx_PhysicianName.SelectedValue.ToString());
-            return newObj;
-        }
-
-        private void ObjectToUI(BDPhysicianSalary newObj)
-        {
-            txtId.Text = newObj.PhysicianPriceID.ToString();
-            dateTimePicker1.Value = newObj.FromDate;
-            dateTimePicker2.Value = newObj.ToDate;
-            numericUpDown2.Value = newObj.PhysicianSalary;
-            cbx_PhysicianName.SelectedValue = newObj.PhysicianID;
-        }
 
         #region
+        
         //Events
+
         private void FrmPhysicianSalary_Load(object sender, EventArgs e)
         {
             Mode = "Select";
@@ -96,29 +67,33 @@ namespace CenterReservation.INT.BasicData
         {
             Mode = "Change";
             ControlUI("Add");
-            fillGrid();
-        }
-
-        private void btn_Edit_Click(object sender, EventArgs e)
-        {
-            Mode = "Change";
-            ControlUI("Edit");
-            fillGrid();
+            ClearUI();
         }
 
         private void btn_Delete_Click(object sender, EventArgs e)
         {
             int code = 0;
             int.TryParse(txtId.Text, out code);
-            if (code > 0)
-                newObjPhysicianSalaryModel.Delete(code);
+            if (code > 0 && newObjPhysicianSalaryModel.Delete(code))
+            {
+                ClearUI();
+            }
+            else
+                MessageBox.Show("لم يتم الحذف لارتباط العنصر ببيانات اخرى.");
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            newObjPhysicianSalaryModel.PhysicianSalarySaveChange(ObjectFromUI());
-            ControlUI("Select");
-            Mode = "Select";
+            var PSObj = ObjectFromUI();
+            if (newObjPhysicianSalaryModel.ValidatePhysicianSalary(PSObj))
+            {
+                newObjPhysicianSalaryModel.PhysicianSalarySaveChange(ObjectFromUI());
+                ControlUI("Select");
+                Mode = "Select";
+                ClearUI();
+            }
+            else
+                MessageBox.Show("من فضلك, تأكد من ادخال البيانات صحيحة او عدم تداخل او تكرار الفترة.");
         }
 
         private void btn_Back_Click(object sender, EventArgs e)
@@ -138,8 +113,59 @@ namespace CenterReservation.INT.BasicData
         {
             fillGrid();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int code = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            if (e.ColumnIndex == 2)
+            {
+                var PSObj = newObjPhysicianSalaryModel.Find(code);
+                ObjectToUI(PSObj);
+            }
+        }
         #endregion
 
+        /// <summary>
+        /// Get data from UI to create new Object
+        /// </summary>
+        /// <returns></returns>
+        private BDPhysicianSalary ObjectFromUI()
+        {
+            BDPhysicianSalary newObj = new BDPhysicianSalary();
+            newObj.PhysicianPriceID = int.Parse(txtId.Text);
+            newObj.FromDate = dateTimePicker1.Value;
+            newObj.ToDate = dateTimePicker2.Value;
+            newObj.PhysicianSalary = numericUpDown2.Value;
+            newObj.PhysicianID = int.Parse(cbx_PhysicianName.SelectedValue.ToString());
+            return newObj;
+        }
+        /// <summary>
+        /// ma object to control in UI form
+        /// </summary>
+        /// <param name="newObj"></param>
+        private void ObjectToUI(BDPhysicianSalary newObj)
+        {
+            txtId.Text = newObj.PhysicianPriceID.ToString();
+            dateTimePicker1.Value = newObj.FromDate;
+            dateTimePicker2.Value = newObj.ToDate;
+            numericUpDown2.Value = newObj.PhysicianSalary;
+            cbx_PhysicianName.SelectedValue = newObj.PhysicianID;
+        }
+        /// <summary>
+        /// clear ui
+        /// </summary>
+        private void ClearUI()
+        {
+            txtId.Text = "0";
+            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker2.Value = DateTime.Now;
+            numericUpDown2.Value = 0;
+            //fillDrobdown();
+            fillGrid();
+        }
+        /// <summary>
+        /// fill grid with data filter by doctor id
+        /// </summary>
         private void fillGrid()
         {
             try
@@ -170,17 +196,9 @@ namespace CenterReservation.INT.BasicData
                  throw;
             }
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int code = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-            if (e.ColumnIndex == 2)
-            {
-                var PSObj = newObjPhysicianSalaryModel.Find(code);
-                ObjectToUI(PSObj);
-            }
-        }
-
+        /// <summary>
+        /// fill dropdown with doctor names with id as a selected value
+        /// </summary>
         private void fillDrobdown()
         {
             try

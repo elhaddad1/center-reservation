@@ -84,6 +84,24 @@ namespace CenterReservation.BL.Manipulations
             return false;
         }
 
+        public bool ValidatePhysicianSalary(BDPhysicianSalary _bDPhysicianSalary)
+        {
+            try
+            {
+                var query = _contextDatabase.BDPhysicianSalaries.AsQueryable();
+                if (_bDPhysicianSalary.PhysicianPriceID != null && _bDPhysicianSalary.PhysicianPriceID > 0)
+                    query = query.Where(a => a.PhysicianPriceID != _bDPhysicianSalary.PhysicianPriceID).AsQueryable();
+                query = query.Where(a => a.PhysicianID == _bDPhysicianSalary.PhysicianID).AsQueryable();
+                query = query.Where(a => (a.FromDate >= _bDPhysicianSalary.ToDate && a.ToDate <= _bDPhysicianSalary.ToDate) || (a.FromDate <= _bDPhysicianSalary.FromDate && a.ToDate >= _bDPhysicianSalary.FromDate)).AsQueryable();
+                return query.Any();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return false;
+        }
+
 
     }
 
