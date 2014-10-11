@@ -15,7 +15,9 @@ namespace CenterReservation.INT.BasicData
     public partial class FrmPhysicianSalary : Form
     {
         private string Mode = "Select";
+
         private PhysicianSalaryModel newObjPhysicianSalaryModel = new PhysicianSalaryModel();
+
         private Physician newObjPhysician = new Physician();
 
         public FrmPhysicianSalary()
@@ -32,10 +34,8 @@ namespace CenterReservation.INT.BasicData
                 btn_Add.Enabled = true;
                 btn_Back.Enabled = true;
                 btn_Delete.Enabled = true;
-
-                //exception behavior
-                cbx_PhysicianName.Visible = true;
-
+                groupBox1.Enabled = true;
+                dataGridView1.Enabled = true;
             }
             else if (order == "Add")
             {
@@ -43,13 +43,10 @@ namespace CenterReservation.INT.BasicData
                 btn_Add.Enabled = false;
                 btn_Delete.Enabled = false;
                 btn_Save.Enabled = true;
-
-                // exception behavior
-
-                cbx_PhysicianName.Visible = false;
+                groupBox1.Enabled = true;
+                dataGridView1.Enabled = true;
             }
         }
-
 
         #region
         
@@ -87,7 +84,7 @@ namespace CenterReservation.INT.BasicData
             var PSObj = ObjectFromUI();
             if (newObjPhysicianSalaryModel.ValidatePhysicianSalary(PSObj))
             {
-                newObjPhysicianSalaryModel.PhysicianSalarySaveChange(ObjectFromUI());
+                newObjPhysicianSalaryModel.PhysicianSalarySaveChange(PSObj);
                 ControlUI("Select");
                 Mode = "Select";
                 ClearUI();
@@ -113,15 +110,16 @@ namespace CenterReservation.INT.BasicData
         {
             fillGrid();
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int code = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-            if (e.ColumnIndex == 2)
-            {
-                var PSObj = newObjPhysicianSalaryModel.Find(code);
-                ObjectToUI(PSObj);
-            }
+            var PSObj = newObjPhysicianSalaryModel.Find(code);
+            ObjectToUI(PSObj);
+            // Default behavior
+            btn_Save.Enabled = true;
+            btn_Add.Enabled = true;
+            btn_Back.Enabled = true;
+            btn_Delete.Enabled = true;
         }
         #endregion
 
@@ -212,6 +210,7 @@ namespace CenterReservation.INT.BasicData
                 throw;
             }
         }
+
 
     }
 }

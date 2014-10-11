@@ -68,6 +68,7 @@
             this.PhysicianPriceWindow.Name = "PhysicianPriceWindow";
             this.PhysicianPriceWindow.Size = new System.Drawing.Size(174, 22);
             this.PhysicianPriceWindow.Text = "سعر الأخصائى";
+            this.PhysicianPriceWindow.Click += new System.EventHandler(this.PhysicianPriceWindow_Click);
             // 
             // VisitTypeWindow
             // 

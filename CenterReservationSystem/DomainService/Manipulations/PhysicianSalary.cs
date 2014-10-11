@@ -31,12 +31,14 @@ namespace CenterReservation.BL.Manipulations
                     // Update BDPhysicianSalary
                     _contextDatabase.Entry(dbPhysicianSalary).CurrentValues.SetValues(_bDPhysicianSalary);
                     _contextDatabase.BDPhysicianSalaries.Attach(dbPhysicianSalary);
+                    _contextDatabase.SaveChanges();
                     return dbPhysicianSalary;
                 }
                 else
                 {
                     // Insert BDPhysicianSalary into the database 
                     _contextDatabase.BDPhysicianSalaries.Add(_bDPhysicianSalary);
+                    _contextDatabase.SaveChanges();
                     return _bDPhysicianSalary;
                 }
             }
@@ -93,7 +95,7 @@ namespace CenterReservation.BL.Manipulations
                     query = query.Where(a => a.PhysicianPriceID != _bDPhysicianSalary.PhysicianPriceID).AsQueryable();
                 query = query.Where(a => a.PhysicianID == _bDPhysicianSalary.PhysicianID).AsQueryable();
                 query = query.Where(a => (a.FromDate >= _bDPhysicianSalary.ToDate && a.ToDate <= _bDPhysicianSalary.ToDate) || (a.FromDate <= _bDPhysicianSalary.FromDate && a.ToDate >= _bDPhysicianSalary.FromDate)).AsQueryable();
-                return query.Any();
+                return !query.Any();
             }
             catch (Exception ex)
             {

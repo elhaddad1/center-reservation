@@ -29,6 +29,12 @@ namespace CenterReservation.INT
             frm.ShowDialog();
         }
 
+        private void PhysicianPriceWindow_Click(object sender, EventArgs e)
+        {
+            BasicData.FrmPhysicianSalary frm = new BasicData.FrmPhysicianSalary();
+            frm.ShowDialog();
+        }
+
 
     }
 }
