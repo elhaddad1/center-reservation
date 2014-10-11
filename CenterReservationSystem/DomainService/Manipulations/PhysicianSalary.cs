@@ -19,9 +19,32 @@ namespace CenterReservation.BL.Manipulations
             this._contextDatabase = new CenterReservationEntities();
         }
 
-        public BDPhysicianSalary Add(BDPhysicianSalary _bDPhysicianSalary)
+        public BDPhysicianSalary PhysicianSalarySaveChange(BDPhysicianSalary _bDPhysicianSalary)
         {
-            return _contextDatabase.BDPhysicianSalaries.Add(_bDPhysicianSalary);
+            try
+            {
+                // BDPhysicianSalary operation add & edit
+
+                var dbPhysicianSalary = _contextDatabase.BDPhysicianSalaries.SingleOrDefault(s => s.PhysicianPriceID == _bDPhysicianSalary.PhysicianPriceID);
+                if (dbPhysicianSalary != null)
+                {
+                    // Update BDPhysicianSalary
+                    _contextDatabase.Entry(dbPhysicianSalary).CurrentValues.SetValues(_bDPhysicianSalary);
+                    _contextDatabase.BDPhysicianSalaries.Attach(dbPhysicianSalary);
+                    return dbPhysicianSalary;
+                }
+                else
+                {
+                    // Insert BDPhysicianSalary into the database 
+                    _contextDatabase.BDPhysicianSalaries.Add(_bDPhysicianSalary);
+                    return _bDPhysicianSalary;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return null;
         }
 
         public IQueryable<BDPhysicianSalary> GetAll()
@@ -38,6 +61,27 @@ namespace CenterReservation.BL.Manipulations
         public BDPhysicianSalary Find(int code)
         {
             return _contextDatabase.BDPhysicianSalaries.Find(code);
+        }
+
+
+        public bool Delete(int code)
+        {
+            try
+            {
+                // BDPhysicianSalary operation remove
+
+                var dbPhysicianSalary = _contextDatabase.BDPhysicianSalaries.SingleOrDefault(s => s.PhysicianPriceID == code);
+                if (dbPhysicianSalary != null)
+                {
+                    _contextDatabase.BDPhysicianSalaries.Remove(dbPhysicianSalary);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return false;
         }
 
 

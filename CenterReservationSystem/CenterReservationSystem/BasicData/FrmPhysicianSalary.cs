@@ -65,6 +65,7 @@ namespace CenterReservation.INT.BasicData
         private BDPhysicianSalary ObjectFromUI()
         {
             BDPhysicianSalary newObj = new BDPhysicianSalary();
+            newObj.PhysicianPriceID = int.Parse(txtId.Text);
             newObj.FromDate = dateTimePicker1.Value;
             newObj.ToDate = dateTimePicker2.Value;
             newObj.PhysicianSalary = numericUpDown2.Value;
@@ -74,6 +75,7 @@ namespace CenterReservation.INT.BasicData
 
         private void ObjectToUI(BDPhysicianSalary newObj)
         {
+            txtId.Text = newObj.PhysicianPriceID.ToString();
             dateTimePicker1.Value = newObj.FromDate;
             dateTimePicker2.Value = newObj.ToDate;
             numericUpDown2.Value = newObj.PhysicianSalary;
@@ -106,14 +108,17 @@ namespace CenterReservation.INT.BasicData
 
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-
+            int code = 0;
+            int.TryParse(txtId.Text, out code);
+            if (code > 0)
+                newObjPhysicianSalaryModel.Delete(code);
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-                newObjPhysicianSalaryModel.Add(ObjectFromUI());
-                ControlUI("Select");
-                Mode = "Select";
+            newObjPhysicianSalaryModel.PhysicianSalarySaveChange(ObjectFromUI());
+            ControlUI("Select");
+            Mode = "Select";
         }
 
         private void btn_Back_Click(object sender, EventArgs e)
