@@ -72,7 +72,6 @@ namespace CenterReservation.INT.BasicData
             return newObj;
         }
 
-
         private void ObjectToUI(BDPhysicianSalary newObj)
         {
             dateTimePicker1.Value = newObj.FromDate;
@@ -150,14 +149,16 @@ namespace CenterReservation.INT.BasicData
                 var queryGrid = (from v in query
                                  select new
                                  {
+                                     id=v.PhysicianPriceID,
                                      From = v.FromDate != null ? v.FromDate.ToShortDateString() : "",
                                      To = v.ToDate != null ? v.ToDate.ToShortDateString() : "",
                                      Price = Convert.ToString(v.PhysicianSalary)
                                  }).ToList();
                 dataGridView1.DataSource = queryGrid;
-                dataGridView1.Columns[0].DataPropertyName = "Price";
-                dataGridView1.Columns[1].DataPropertyName = "From";
-                dataGridView1.Columns[2].DataPropertyName = "To";
+                dataGridView1.Columns[0].DataPropertyName = "id";
+                dataGridView1.Columns[1].DataPropertyName = "Price";
+                dataGridView1.Columns[2].DataPropertyName = "From";
+                dataGridView1.Columns[3].DataPropertyName = "To";
             }
             catch (Exception ex)
             {
@@ -165,6 +166,15 @@ namespace CenterReservation.INT.BasicData
             }
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int code = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            if (e.ColumnIndex == 2)
+            {
+                var PSObj = newObjPhysicianSalaryModel.Find(code);
+                ObjectToUI(PSObj);
+            }
+        }
 
         private void fillDrobdown()
         {

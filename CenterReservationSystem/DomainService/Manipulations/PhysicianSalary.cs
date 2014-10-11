@@ -12,8 +12,7 @@ namespace CenterReservation.BL.Manipulations
     public class PhysicianSalaryModel
     {
 
-
-        public CenterReservationEntities _contextDatabase;
+        private CenterReservationEntities _contextDatabase;
 
         public PhysicianSalaryModel()
         {
@@ -33,6 +32,12 @@ namespace CenterReservation.BL.Manipulations
         public IQueryable<BDPhysicianSalary> FindByPhysicianCode(int code)
         {
             return _contextDatabase.BDPhysicianSalaries.Where(a => a.PhysicianID == code).OrderBy(a => a.PhysicianPriceID);
+        }
+
+
+        public BDPhysicianSalary Find(int code)
+        {
+            return _contextDatabase.BDPhysicianSalaries.Find(code);
         }
 
 
