@@ -13,8 +13,8 @@ namespace CenterReservation.INT.BasicData
 {
     public partial class FrmPhysician : Form
     {
-        #region
-        //Public variables
+        #region Public variables
+
         string Mode = "Select";
         Physician physician = new Physician();
         BDPhsycian _SelectedPhysician = new BDPhsycian();
@@ -31,8 +31,8 @@ namespace CenterReservation.INT.BasicData
 
         }
 
-        #region
-        //Events
+        #region Events
+
         private void FrmPhysician_Load(object sender, EventArgs e)
         {
 
@@ -110,8 +110,8 @@ namespace CenterReservation.INT.BasicData
         #endregion
 
 
-        #region
-        // Methods
+        #region Methods
+
         public void ControlUI(string order)
         {
             if (order == "Select")
