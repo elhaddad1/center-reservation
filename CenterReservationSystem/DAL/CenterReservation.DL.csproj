@@ -138,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\EntityFramework.SqlServer.dll" />
+    <Content Include="Data\script 15-10-2014.sql" />
     <Content Include="Data\ScriptSchemaanddata-09-21-2014.sql" />
     <Content Include="Data\ScriptSchemaanddata-10-9-2014.sql" />
   </ItemGroup>
