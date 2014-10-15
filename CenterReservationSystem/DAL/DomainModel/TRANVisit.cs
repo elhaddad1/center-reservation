@@ -25,6 +25,9 @@ namespace CenterReservation.DL.DomainModel
         public decimal TotalVisitPrice { get; set; }
         public decimal Paiedprice { get; set; }
         public decimal RestPrice { get; set; }
+        public System.DateTime TimeFrom { get; set; }
+        public System.DateTime TimeTo { get; set; }
+        public string Notes { get; set; }
     
         public virtual ACPatient ACPatient { get; set; }
         public virtual BDPhysician BDPhysician { get; set; }

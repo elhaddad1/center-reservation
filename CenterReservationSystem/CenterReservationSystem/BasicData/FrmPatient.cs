@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using CenterReservation.BL.Manipulations;
+using CenterReservation.DL.DomainModel;
 namespace CenterReservation.INT.BasicData
 {
     public partial class FrmPatient : Form
     {
+        Patient patient;
         public FrmPatient()
         {
             InitializeComponent();
+            patient = new Patient();
         }
         #region Events
 
@@ -32,7 +35,10 @@ namespace CenterReservation.INT.BasicData
             if (DGVPatient.SelectedRows[0]!=null )
             {
                 int patientID = Convert.ToInt32(DGVPatient.SelectedRows[0].Cells["PatientID"].Value);
-                //CenterReservationEntities
+                ACPatient _selectedPatint= patient.SelectPatientByID(patientID);
+                txtName.Text = _selectedPatint.PatientName;
+                txtAddress.Text = _selectedPatint.Address;
+                
  
             }
 

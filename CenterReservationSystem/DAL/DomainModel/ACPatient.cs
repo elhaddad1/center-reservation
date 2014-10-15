@@ -24,7 +24,8 @@ namespace CenterReservation.DL.DomainModel
         public string Address { get; set; }
         public string Phone { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
-        public Nullable<int> Age { get; set; }
+        public string Mobile { get; set; }
+        public string Notes { get; set; }
     
         public virtual ICollection<TRANVisit> TRANVisits { get; set; }
     }
