@@ -33,6 +33,7 @@
             this.AddEditPhysicianWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.PhysicianPriceWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.VisitTypeWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemPatiant = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +52,8 @@
             this.البياناتالرئيسيةToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddEditPhysicianWindow,
             this.PhysicianPriceWindow,
-            this.VisitTypeWindow});
+            this.VisitTypeWindow,
+            this.ToolStripMenuItemPatiant});
             this.البياناتالرئيسيةToolStripMenuItem.Name = "البياناتالرئيسيةToolStripMenuItem";
             this.البياناتالرئيسيةToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.البياناتالرئيسيةToolStripMenuItem.Text = "البيانات الرئيسية";
@@ -76,6 +78,13 @@
             this.VisitTypeWindow.Size = new System.Drawing.Size(174, 22);
             this.VisitTypeWindow.Text = "أدخال وتعديل الزيارات";
             this.VisitTypeWindow.Click += new System.EventHandler(this.VisitTypeWindow_Click);
+            // 
+            // ToolStripMenuItemPatiant
+            // 
+            this.ToolStripMenuItemPatiant.Name = "ToolStripMenuItemPatiant";
+            this.ToolStripMenuItemPatiant.Size = new System.Drawing.Size(174, 22);
+            this.ToolStripMenuItemPatiant.Text = "إدخال وتعديل المريض";
+            this.ToolStripMenuItemPatiant.Click += new System.EventHandler(this.ToolStripMenuItemPatiant_Click);
             // 
             // frm_MainWindow
             // 
@@ -104,5 +113,6 @@
         private System.Windows.Forms.ToolStripMenuItem AddEditPhysicianWindow;
         private System.Windows.Forms.ToolStripMenuItem PhysicianPriceWindow;
         private System.Windows.Forms.ToolStripMenuItem VisitTypeWindow;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemPatiant;
     }
 }

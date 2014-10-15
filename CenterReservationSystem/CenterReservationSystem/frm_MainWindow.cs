@@ -35,6 +35,12 @@ namespace CenterReservation.INT
             frm.ShowDialog();
         }
 
+        private void ToolStripMenuItemPatiant_Click(object sender, EventArgs e)
+        {
+            BasicData.FrmPatient frm = new BasicData.FrmPatient();
+            frm.ShowDialog();
+        }
+
 
     }
 }
