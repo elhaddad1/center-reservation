@@ -38,7 +38,6 @@ namespace CenterReservation.INT.BasicData
                 ACPatient _selectedPatint= patient.SelectPatientByID(patientID);
                 txtName.Text = _selectedPatint.PatientName;
                 txtAddress.Text = _selectedPatint.Address;
-                txt
  
             }
 
