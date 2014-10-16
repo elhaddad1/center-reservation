@@ -49,6 +49,12 @@ namespace CenterReservation.BL.Manipulations
             return null;
         }
 
+
+        public IQueryable<BDVisitPrice> FindByVisitPriceCode(int code)
+        {
+            return _contextDatabase.BDVisitPrices.Where(a => a.VisitTypeID == code).OrderBy(a => a.VisitPriceID);
+        }
+
         public IQueryable<BDVisitPrice> GetAll()
         {
             return _contextDatabase.BDVisitPrices;
