@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPatient));
             this.DGVPatient = new System.Windows.Forms.DataGridView();
+            this.PatientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PatientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_Delete = new System.Windows.Forms.Button();
             this.btn_Back = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
@@ -54,10 +58,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblAdress = new System.Windows.Forms.Label();
             this.lbl_PatientName = new System.Windows.Forms.Label();
-            this.PatientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PatientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aCPatientBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -77,17 +77,47 @@
             this.DGVPatient.ReadOnly = true;
             this.DGVPatient.RowHeadersVisible = false;
             // 
+            // PatientID
+            // 
+            this.PatientID.DataPropertyName = "PatientID";
+            resources.ApplyResources(this.PatientID, "PatientID");
+            this.PatientID.Name = "PatientID";
+            this.PatientID.ReadOnly = true;
+            // 
+            // PatientName
+            // 
+            this.PatientName.DataPropertyName = "PatientName";
+            resources.ApplyResources(this.PatientName, "PatientName");
+            this.PatientName.Name = "PatientName";
+            this.PatientName.ReadOnly = true;
+            // 
+            // Phone
+            // 
+            this.Phone.DataPropertyName = "Phone";
+            resources.ApplyResources(this.Phone, "Phone");
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
+            // 
+            // DOB
+            // 
+            this.DOB.DataPropertyName = "DOB";
+            resources.ApplyResources(this.DOB, "DOB");
+            this.DOB.Name = "DOB";
+            this.DOB.ReadOnly = true;
+            // 
             // btn_Delete
             // 
             resources.ApplyResources(this.btn_Delete, "btn_Delete");
             this.btn_Delete.Name = "btn_Delete";
             this.btn_Delete.UseVisualStyleBackColor = true;
+            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
             // 
             // btn_Back
             // 
             resources.ApplyResources(this.btn_Back, "btn_Back");
             this.btn_Back.Name = "btn_Back";
             this.btn_Back.UseVisualStyleBackColor = true;
+            this.btn_Back.Click += new System.EventHandler(this.btn_Back_Click);
             // 
             // btn_Save
             // 
@@ -202,34 +232,6 @@
             // 
             resources.ApplyResources(this.lbl_PatientName, "lbl_PatientName");
             this.lbl_PatientName.Name = "lbl_PatientName";
-            // 
-            // PatientID
-            // 
-            this.PatientID.DataPropertyName = "PatientID";
-            resources.ApplyResources(this.PatientID, "PatientID");
-            this.PatientID.Name = "PatientID";
-            this.PatientID.ReadOnly = true;
-            // 
-            // PatientName
-            // 
-            this.PatientName.DataPropertyName = "PatientName";
-            resources.ApplyResources(this.PatientName, "PatientName");
-            this.PatientName.Name = "PatientName";
-            this.PatientName.ReadOnly = true;
-            // 
-            // Phone
-            // 
-            this.Phone.DataPropertyName = "Phone";
-            resources.ApplyResources(this.Phone, "Phone");
-            this.Phone.Name = "Phone";
-            this.Phone.ReadOnly = true;
-            // 
-            // DOB
-            // 
-            this.DOB.DataPropertyName = "DOB";
-            resources.ApplyResources(this.DOB, "DOB");
-            this.DOB.Name = "DOB";
-            this.DOB.ReadOnly = true;
             // 
             // FrmPatient
             // 
