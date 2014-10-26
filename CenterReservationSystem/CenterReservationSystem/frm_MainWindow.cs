@@ -48,5 +48,12 @@ namespace CenterReservation.INT
         }
 
 
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BasicData.FrmVisitPrice frm = new BasicData.FrmVisitPrice();
+            frm.ShowDialog();
+        }
+
+
     }
 }
