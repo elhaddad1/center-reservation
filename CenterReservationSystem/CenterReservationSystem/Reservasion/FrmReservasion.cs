@@ -42,6 +42,30 @@ namespace CenterReservation.INT.Reservasion
                 FillSearchGrid(_result);
             }
         }
+
+        private void btn_ShowOldServices_Click(object sender, EventArgs e)
+        {
+            if (dgrd_SearchResults.SelectedRows.Count != 0)
+            {
+                string PatientID = dgrd_SearchResults.SelectedRows[0].Cells["clm_Code"].Value.ToString();
+                FrmShowOldReservasion frm = new FrmShowOldReservasion(Convert.ToInt32(PatientID));
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("برجاء البحث عن مريض أولا");
+            }
+        }
+
+        private void btn_Clear_Click(object sender, EventArgs e)
+        {
+            tbx_PatientName.Text = "";
+            tbx_Phone.Text = "";
+            dgrd_SearchResults.DataSource = null;
+            dgrd_SearchResults.Refresh();
+        }
+
+
         #endregion
 
 
@@ -58,5 +82,13 @@ namespace CenterReservation.INT.Reservasion
 
         }
         #endregion
+
+
+
+
+
+
+
+
     }
 }

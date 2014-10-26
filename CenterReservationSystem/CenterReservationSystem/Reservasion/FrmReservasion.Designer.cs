@@ -44,6 +44,7 @@
             this.btn_ShowOldServices = new System.Windows.Forms.Button();
             this.btn_AddNewService = new System.Windows.Forms.Button();
             this.btn_Back = new System.Windows.Forms.Button();
+            this.btn_Clear = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrd_SearchResults)).BeginInit();
@@ -51,6 +52,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_Clear);
             this.groupBox1.Controls.Add(this.btn_AddPatient);
             this.groupBox1.Controls.Add(this.btn_Search);
             this.groupBox1.Controls.Add(this.label2);
@@ -128,6 +130,8 @@
             // 
             // dgrd_SearchResults
             // 
+            this.dgrd_SearchResults.AllowUserToAddRows = false;
+            this.dgrd_SearchResults.AllowUserToDeleteRows = false;
             this.dgrd_SearchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrd_SearchResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clm_Code,
@@ -172,6 +176,7 @@
             this.btn_ShowOldServices.TabIndex = 5;
             this.btn_ShowOldServices.Text = "عرض الجلسات السابقه";
             this.btn_ShowOldServices.UseVisualStyleBackColor = true;
+            this.btn_ShowOldServices.Click += new System.EventHandler(this.btn_ShowOldServices_Click);
             // 
             // btn_AddNewService
             // 
@@ -191,6 +196,16 @@
             this.btn_Back.Text = "رجوع";
             this.btn_Back.UseVisualStyleBackColor = true;
             // 
+            // btn_Clear
+            // 
+            this.btn_Clear.Location = new System.Drawing.Point(11, 8);
+            this.btn_Clear.Name = "btn_Clear";
+            this.btn_Clear.Size = new System.Drawing.Size(112, 53);
+            this.btn_Clear.TabIndex = 6;
+            this.btn_Clear.Text = "ألغاء البحث";
+            this.btn_Clear.UseVisualStyleBackColor = true;
+            this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
+            // 
             // FrmReservasion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,6 +219,7 @@
             this.Name = "FrmReservasion";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "شاشة الحجز";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -231,5 +247,6 @@
         private System.Windows.Forms.Button btn_ShowOldServices;
         private System.Windows.Forms.Button btn_AddNewService;
         private System.Windows.Forms.Button btn_Back;
+        private System.Windows.Forms.Button btn_Clear;
     }
 }

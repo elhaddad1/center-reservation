@@ -32,13 +32,14 @@ namespace CenterReservation.INT.BasicData
         }
         private void btn_Edit_Click(object sender, EventArgs e)
         {
-            if (DGVPatient.SelectedRows[0]!=null )
+            if (DGVPatient.SelectedRows[0] != null)
             {
                 int patientID = Convert.ToInt32(DGVPatient.SelectedRows[0].Cells["PatientID"].Value);
-                ACPatient _selectedPatint= patient.SelectPatientByID(patientID);
+                ACPatient _selectedPatint = patient.SelectPatientByID(patientID);
                 txtName.Text = _selectedPatint.PatientName;
                 txtAddress.Text = _selectedPatint.Address;
- 
+
+
             }
 
         }
@@ -52,9 +53,9 @@ namespace CenterReservation.INT.BasicData
             DtpDOB.Value = DateTime.Today;
             txtAge.Text = string.Empty;
             txtNotes.Text = string.Empty;
-        } 
+        }
         #endregion
 
-        
+
     }
 }
