@@ -38,12 +38,12 @@ namespace CenterReservation.BL.Manipulations
                 else
                 {
                     ACPatient _bDPatient = new ACPatient();
-                    Query.PatientName = _bDPatient.PatientName;
-                    Query.DOB = _bDPatient.DOB;
-                    Query.Phone = _bDPatient.Phone;
-                    Query .Mobile= _bDPatient .Mobile ;
-                    Query .Address=_bDPatient.Address ;
-                    Query .Notes= _bDPatient .Notes ;
+                    _bDPatient.PatientName = patient.PatientName;
+                    _bDPatient.DOB = patient.DOB;
+                    _bDPatient.Phone = patient.Phone;
+                    _bDPatient.Mobile = patient.Mobile;
+                    _bDPatient.Address = patient.Address;
+                    _bDPatient.Notes = patient.Notes;
                     _contextDatabase.ACPatients.Add(_bDPatient);
                     _contextDatabase.SaveChanges();
                     return "تم الحفظ بنجاح";
@@ -64,11 +64,11 @@ namespace CenterReservation.BL.Manipulations
         {
             return _contextDatabase.ACPatients.Where (p=>p.PatientID == patientID).FirstOrDefault() ;
         }
-        public string deleteDBPhysician(ACPatient patient)
+        public string deleteDBPhysician(int patientID)
         {
             try
             {
-                var _bDPatient = _contextDatabase.ACPatients.Single(a => a.PatientID == patient.PatientID);
+                var _bDPatient = _contextDatabase.ACPatients.Single(a => a.PatientID == patientID);
                 _contextDatabase.ACPatients.Remove(_bDPatient);
                 _contextDatabase.SaveChanges();
                 return "تم الحذف بنجاح";
