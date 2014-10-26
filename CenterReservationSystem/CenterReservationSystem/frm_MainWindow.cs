@@ -41,6 +41,19 @@ namespace CenterReservation.INT
             frm.ShowDialog();
         }
 
+        private void ReservasionWindow_Click(object sender, EventArgs e)
+        {
+            Reservasion.FrmReservasion frm = new Reservasion.FrmReservasion();
+            frm.ShowDialog();
+        }
+
+
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BasicData.FrmVisitPrice frm = new BasicData.FrmVisitPrice();
+            frm.ShowDialog();
+        }
+
 
     }
 }

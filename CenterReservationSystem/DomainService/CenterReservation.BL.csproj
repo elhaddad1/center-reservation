@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContract\BDPhsycian.cs" />
+    <Compile Include="Manipulations\VisitPrice.cs" />
     <Compile Include="Manipulations\Patient.cs" />
     <Compile Include="Manipulations\PhysicianSalary.cs" />
     <Compile Include="Manipulations\Physician.cs" />
