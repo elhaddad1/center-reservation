@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tbx_PatientName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btn_AddPatient = new System.Windows.Forms.Button();
+            this.btn_Search = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tbx_Phone = new System.Windows.Forms.TextBox();
-            this.btn_Search = new System.Windows.Forms.Button();
-            this.btn_AddPatient = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbx_PatientName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgrd_SearchResults = new System.Windows.Forms.DataGridView();
             this.clm_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,21 +64,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "بحث ";
             // 
-            // tbx_PatientName
+            // btn_AddPatient
             // 
-            this.tbx_PatientName.Location = new System.Drawing.Point(312, 28);
-            this.tbx_PatientName.Name = "tbx_PatientName";
-            this.tbx_PatientName.Size = new System.Drawing.Size(257, 20);
-            this.tbx_PatientName.TabIndex = 0;
+            this.btn_AddPatient.Location = new System.Drawing.Point(129, 68);
+            this.btn_AddPatient.Name = "btn_AddPatient";
+            this.btn_AddPatient.Size = new System.Drawing.Size(112, 53);
+            this.btn_AddPatient.TabIndex = 5;
+            this.btn_AddPatient.Text = "أضافة مريض";
+            this.btn_AddPatient.UseVisualStyleBackColor = true;
+            this.btn_AddPatient.Click += new System.EventHandler(this.btn_AddPatient_Click);
             // 
-            // label1
+            // btn_Search
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(611, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "الأسم";
+            this.btn_Search.Location = new System.Drawing.Point(129, 8);
+            this.btn_Search.Name = "btn_Search";
+            this.btn_Search.Size = new System.Drawing.Size(112, 53);
+            this.btn_Search.TabIndex = 4;
+            this.btn_Search.Text = "بحث";
+            this.btn_Search.UseVisualStyleBackColor = true;
+            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
             // 
             // label2
             // 
@@ -96,25 +100,21 @@
             this.tbx_Phone.Size = new System.Drawing.Size(257, 20);
             this.tbx_Phone.TabIndex = 2;
             // 
-            // btn_Search
+            // label1
             // 
-            this.btn_Search.Location = new System.Drawing.Point(129, 8);
-            this.btn_Search.Name = "btn_Search";
-            this.btn_Search.Size = new System.Drawing.Size(112, 53);
-            this.btn_Search.TabIndex = 4;
-            this.btn_Search.Text = "بحث";
-            this.btn_Search.UseVisualStyleBackColor = true;
-            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(611, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "الأسم";
             // 
-            // btn_AddPatient
+            // tbx_PatientName
             // 
-            this.btn_AddPatient.Location = new System.Drawing.Point(129, 68);
-            this.btn_AddPatient.Name = "btn_AddPatient";
-            this.btn_AddPatient.Size = new System.Drawing.Size(112, 53);
-            this.btn_AddPatient.TabIndex = 5;
-            this.btn_AddPatient.Text = "أضافة مريض";
-            this.btn_AddPatient.UseVisualStyleBackColor = true;
-            this.btn_AddPatient.Click += new System.EventHandler(this.btn_AddPatient_Click);
+            this.tbx_PatientName.Location = new System.Drawing.Point(312, 28);
+            this.tbx_PatientName.Name = "tbx_PatientName";
+            this.tbx_PatientName.Size = new System.Drawing.Size(257, 20);
+            this.tbx_PatientName.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -137,6 +137,7 @@
             this.dgrd_SearchResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgrd_SearchResults.Location = new System.Drawing.Point(3, 16);
             this.dgrd_SearchResults.Name = "dgrd_SearchResults";
+            this.dgrd_SearchResults.RowHeadersVisible = false;
             this.dgrd_SearchResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrd_SearchResults.Size = new System.Drawing.Size(661, 155);
             this.dgrd_SearchResults.TabIndex = 0;

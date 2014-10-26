@@ -18,7 +18,7 @@ namespace CenterReservation.BL.Manipulations
 
         public List<ACPatient> GetPatinetByNameORByPhoneNumber(string _patinetName, string _phoneNumber)
         {
-            List<ACPatient> Query = _contextDatabase.ACPatients.Where(a => a.PatientName.Contains(_patinetName) || a.Phone == _phoneNumber).ToList();
+            List<ACPatient> Query = _contextDatabase.ACPatients.Where(a => a.PatientName.Contains(_patinetName) || a.Phone == _phoneNumber || a.Mobile == _phoneNumber).ToList();
             return Query;
         }
     }

@@ -34,13 +34,16 @@
             this.PhysicianPriceWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.VisitTypeWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemPatiant = new System.Windows.Forms.ToolStripMenuItem();
+            this.الحجوزاتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReservasionWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.البياناتالرئيسيةToolStripMenuItem});
+            this.البياناتالرئيسيةToolStripMenuItem,
+            this.الحجوزاتToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(823, 24);
@@ -86,6 +89,21 @@
             this.ToolStripMenuItemPatiant.Text = "إدخال وتعديل المريض";
             this.ToolStripMenuItemPatiant.Click += new System.EventHandler(this.ToolStripMenuItemPatiant_Click);
             // 
+            // الحجوزاتToolStripMenuItem
+            // 
+            this.الحجوزاتToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ReservasionWindow});
+            this.الحجوزاتToolStripMenuItem.Name = "الحجوزاتToolStripMenuItem";
+            this.الحجوزاتToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.الحجوزاتToolStripMenuItem.Text = "الحجوزات";
+            // 
+            // ReservasionWindow
+            // 
+            this.ReservasionWindow.Name = "ReservasionWindow";
+            this.ReservasionWindow.Size = new System.Drawing.Size(152, 22);
+            this.ReservasionWindow.Text = "شاشة الحجز";
+            this.ReservasionWindow.Click += new System.EventHandler(this.ReservasionWindow_Click);
+            // 
             // frm_MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,5 +132,7 @@
         private System.Windows.Forms.ToolStripMenuItem PhysicianPriceWindow;
         private System.Windows.Forms.ToolStripMenuItem VisitTypeWindow;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemPatiant;
+        private System.Windows.Forms.ToolStripMenuItem الحجوزاتToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ReservasionWindow;
     }
 }
