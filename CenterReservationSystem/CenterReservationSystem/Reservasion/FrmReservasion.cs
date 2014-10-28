@@ -65,6 +65,21 @@ namespace CenterReservation.INT.Reservasion
             dgrd_SearchResults.Refresh();
         }
 
+        private void btn_Back_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+        private void btn_AddNewService_Click(object sender, EventArgs e)
+        {
+            if (dgrd_SearchResults.SelectedRows.Count != 0)
+            {
+                FrmAddNewReservasion frm = new FrmAddNewReservasion();
+                frm.ShowDialog();
+            }
+            else
+                MessageBox.Show("");
+        }
 
         #endregion
 
@@ -82,6 +97,10 @@ namespace CenterReservation.INT.Reservasion
 
         }
         #endregion
+
+
+
+
 
 
 

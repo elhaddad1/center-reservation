@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_Clear = new System.Windows.Forms.Button();
             this.btn_AddPatient = new System.Windows.Forms.Button();
             this.btn_Search = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.btn_ShowOldServices = new System.Windows.Forms.Button();
             this.btn_AddNewService = new System.Windows.Forms.Button();
             this.btn_Back = new System.Windows.Forms.Button();
-            this.btn_Clear = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrd_SearchResults)).BeginInit();
@@ -65,6 +65,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "بحث ";
+            // 
+            // btn_Clear
+            // 
+            this.btn_Clear.Location = new System.Drawing.Point(11, 8);
+            this.btn_Clear.Name = "btn_Clear";
+            this.btn_Clear.Size = new System.Drawing.Size(112, 53);
+            this.btn_Clear.TabIndex = 6;
+            this.btn_Clear.Text = "ألغاء البحث";
+            this.btn_Clear.UseVisualStyleBackColor = true;
+            this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
             // 
             // btn_AddPatient
             // 
@@ -186,6 +196,7 @@
             this.btn_AddNewService.TabIndex = 6;
             this.btn_AddNewService.Text = "أضافة جلسة جديده";
             this.btn_AddNewService.UseVisualStyleBackColor = true;
+            this.btn_AddNewService.Click += new System.EventHandler(this.btn_AddNewService_Click);
             // 
             // btn_Back
             // 
@@ -195,16 +206,7 @@
             this.btn_Back.TabIndex = 7;
             this.btn_Back.Text = "رجوع";
             this.btn_Back.UseVisualStyleBackColor = true;
-            // 
-            // btn_Clear
-            // 
-            this.btn_Clear.Location = new System.Drawing.Point(11, 8);
-            this.btn_Clear.Name = "btn_Clear";
-            this.btn_Clear.Size = new System.Drawing.Size(112, 53);
-            this.btn_Clear.TabIndex = 6;
-            this.btn_Clear.Text = "ألغاء البحث";
-            this.btn_Clear.UseVisualStyleBackColor = true;
-            this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
+            this.btn_Back.Click += new System.EventHandler(this.btn_Back_Click);
             // 
             // FrmReservasion
             // 

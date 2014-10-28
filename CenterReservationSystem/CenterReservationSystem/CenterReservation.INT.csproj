@@ -138,6 +138,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reservasion\FrmAddNewReservasion.resx">
+      <DependentUpon>FrmAddNewReservasion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reservasion\FrmReservasion.resx">
       <DependentUpon>FrmReservasion.cs</DependentUpon>
     </EmbeddedResource>
