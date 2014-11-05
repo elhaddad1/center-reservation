@@ -18,6 +18,7 @@ namespace CenterReservation.INT.Reservasion
     {
         public CenterReservation.BL.Manipulations.Reservasion reservasionObj = new CenterReservation.BL.Manipulations.Reservasion();
 
+        static int _patientID = -1;
         public FrmShowOldReservasion()
         {
             InitializeComponent();
@@ -26,14 +27,15 @@ namespace CenterReservation.INT.Reservasion
         public FrmShowOldReservasion(int PatientID)
         {
             InitializeComponent();
+            _patientID = PatientID;
             FillVisitsGrid(PatientID);
+
 
         }
 
         #region Methods
         private void FillVisitsGrid(int _patientID)
         {
-
             var Query = reservasionObj.GetAllReservationsByPatinetID(_patientID);
             if (Query != null && Query.Count > 0)
             {
@@ -49,8 +51,6 @@ namespace CenterReservation.INT.Reservasion
                 dgrd_ShowVisits.Columns[7].DataPropertyName = "TimeFrom";
                 dgrd_ShowVisits.Columns[8].DataPropertyName = "TimeTo";
                 dgrd_ShowVisits.Columns[9].DataPropertyName = "Notes";
-
-
                 dgrd_ShowVisits.DataSource = Query;
             }
         }
@@ -61,6 +61,27 @@ namespace CenterReservation.INT.Reservasion
         {
             this.Close();
         }
+
+        private void dgrd_ShowVisits_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int VisitID = Convert.ToInt32(dgrd_ShowVisits.SelectedRows[0].Cells["id"].Value.ToString());
+            if (reservasionObj.GetReservationByVisitID(VisitID) != null)
+            {
+                FrmAddNewReservasion frm = new FrmAddNewReservasion(reservasionObj.GetReservationByVisitID(VisitID));
+                frm.FormClosed += AddresrvationClosed;
+                frm.ShowDialog();
+
+
+            }
+
+        }
+        private void AddresrvationClosed(object sender, FormClosedEventArgs e)
+        {
+            FillVisitsGrid(_patientID);
+        }
+
         #endregion
+
+
     }
 }

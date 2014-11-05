@@ -65,6 +65,7 @@
             this.dgrd_ShowVisits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrd_ShowVisits.Size = new System.Drawing.Size(846, 238);
             this.dgrd_ShowVisits.TabIndex = 23;
+            this.dgrd_ShowVisits.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgrd_ShowVisits_CellMouseDoubleClick);
             // 
             // id
             // 

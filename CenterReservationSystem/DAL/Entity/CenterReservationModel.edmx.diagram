@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f42886c5e0374ea499082d5c47dcec81" Name="Diagram1">
-        <EntityTypeShape EntityType="CenterReservationModel.ACPatient" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CenterReservationModel.BDPhysician" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CenterReservationModel.BDPhysicianSalary" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CenterReservationModel.BDVisitPrice" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CenterReservationModel.BDVisitType" Width="1.5" PointX="3.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CenterReservationModel.TRANVisit" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
-        <AssociationConnector Association="CenterReservationModel.FK_TRANVisit_ACPatient" ManuallyRouted="false" />
-        <AssociationConnector Association="CenterReservationModel.FK_BDPhysicianSalary_BDPhysician" ManuallyRouted="false" />
-        <AssociationConnector Association="CenterReservationModel.FK_TRANVisit_BDPhysician" ManuallyRouted="false" />
-        <AssociationConnector Association="CenterReservationModel.FK_BDVisitPrice_BDVisitType" ManuallyRouted="false" />
-        <AssociationConnector Association="CenterReservationModel.FK_TRANVisit_BDVisitType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CenterReservationModel.ACPatient" Width="1.5" PointX="1.6165778905230472" PointY="29.36520208295677" />
+        <EntityTypeShape EntityType="CenterReservationModel.BDPhysician" Width="1.5" PointX="5.937982284435062" PointY="7.9474894441419694" />
+        <EntityTypeShape EntityType="CenterReservationModel.BDPhysicianSalary" Width="1.5" PointX="6.1435550982801033" PointY="6.6980497719245262" />
+        <EntityTypeShape EntityType="CenterReservationModel.BDVisitPrice" Width="1.5" PointX="9.9914353331511077" PointY="14.836136422509391" />
+        <EntityTypeShape EntityType="CenterReservationModel.BDVisitType" Width="1.5" PointX="2.4975805387355297" PointY="13.702449462237977" />
+        <EntityTypeShape EntityType="CenterReservationModel.TRANVisit" Width="1.5" PointX="5.7784097743120091" PointY="20.450435156212389" />
+        <AssociationConnector Association="CenterReservationModel.FK_TRANVisit_ACPatient" />
+        <AssociationConnector Association="CenterReservationModel.FK_BDPhysicianSalary_BDPhysician" />
+        <AssociationConnector Association="CenterReservationModel.FK_TRANVisit_BDPhysician" />
+        <AssociationConnector Association="CenterReservationModel.FK_BDVisitPrice_BDVisitType" />
+        <AssociationConnector Association="CenterReservationModel.FK_TRANVisit_BDVisitType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

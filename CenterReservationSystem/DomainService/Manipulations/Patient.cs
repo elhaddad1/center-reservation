@@ -10,11 +10,11 @@ using CenterReservation.DL.DomainModel;
 
 namespace CenterReservation.BL.Manipulations
 {
-   public  class Patient
+    public class Patient
     {
-          public CenterReservationEntities _contextDatabase;
+        public CenterReservationEntities _contextDatabase;
 
-          public Patient()
+        public Patient()
         {
             this._contextDatabase = new CenterReservationEntities();
         }
@@ -29,9 +29,9 @@ namespace CenterReservation.BL.Manipulations
                     Query.PatientName = patient.PatientName;
                     Query.DOB = patient.DOB;
                     Query.Phone = patient.Phone;
-                    Query .Mobile= patient .Mobile ;
-                    Query .Address=patient.Address ;
-                    Query .Notes= patient .Notes ;
+                    Query.Mobile = patient.Mobile;
+                    Query.Address = patient.Address;
+                    Query.Notes = patient.Notes;
                     _contextDatabase.SaveChanges();
                     return "تم الحفظ بنجاح";
                 }
@@ -56,13 +56,13 @@ namespace CenterReservation.BL.Manipulations
             }
         }
 
-        public List<ACPatient > SelectAllBDPatient()
+        public List<ACPatient> SelectAllBDPatient()
         {
             return _contextDatabase.ACPatients.ToList();
         }
         public ACPatient SelectPatientByID(int patientID)
         {
-            return _contextDatabase.ACPatients.Where (p=>p.PatientID == patientID).FirstOrDefault() ;
+            return _contextDatabase.ACPatients.Where(p => p.PatientID == patientID).FirstOrDefault();
         }
         public string deleteDBPhysician(int patientID)
         {

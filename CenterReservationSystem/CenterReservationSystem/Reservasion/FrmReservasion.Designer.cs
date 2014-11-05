@@ -111,6 +111,7 @@
             this.tbx_Phone.Name = "tbx_Phone";
             this.tbx_Phone.Size = new System.Drawing.Size(257, 20);
             this.tbx_Phone.TabIndex = 2;
+            this.tbx_Phone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbx_Phone_KeyPress);
             // 
             // label1
             // 
@@ -127,6 +128,7 @@
             this.tbx_PatientName.Name = "tbx_PatientName";
             this.tbx_PatientName.Size = new System.Drawing.Size(257, 20);
             this.tbx_PatientName.TabIndex = 0;
+            this.tbx_PatientName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbx_PatientName_KeyPress);
             // 
             // groupBox2
             // 

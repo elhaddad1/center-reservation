@@ -13,6 +13,7 @@ namespace CenterReservation.BL.Manipulations
     {
         public int PhysicianID { get; set; }
         public string PhysicianName { get; set; }
+        public decimal PhysicianSalary { get; set; }
 
         public CenterReservationEntities _contextDatabase;
 
@@ -68,7 +69,19 @@ namespace CenterReservation.BL.Manipulations
             }
         }
 
-        //        public 
+        public List<Physician> GetPhysiciansWithPrics(DateTime Date)
+        {
+            var Query = (from Ph in _contextDatabase.BDPhysicians
+                         join Sal in _contextDatabase.BDPhysicianSalaries on Ph.PhysicianID equals Sal.PhysicianID
+                         where Sal.FromDate <= Date && Sal.ToDate >= Date
+                         select new Physician
+                         {
+                             PhysicianID = Ph.PhysicianID,
+                             PhysicianName = Ph.PhysicianName,
+                             PhysicianSalary = Sal.PhysicianSalary
+                         }).OrderBy(a => a.PhysicianName).ToList();
+            return Query;
+        }
 
 
     }
