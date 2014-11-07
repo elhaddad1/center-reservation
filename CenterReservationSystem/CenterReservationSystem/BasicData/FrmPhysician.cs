@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CenterReservation.BL.Manipulations;
-using CenterReservation.BL.DataContract;
+//using CenterReservation.BL.DataContract;
 namespace CenterReservation.INT.BasicData
 {
     public partial class FrmPhysician : Form
@@ -17,7 +17,7 @@ namespace CenterReservation.INT.BasicData
 
         string Mode = "Select";
         Physician physician = new Physician();
-        BDPhsycian _SelectedPhysician = new BDPhsycian();
+        Physician _SelectedPhysician = new Physician();
         #endregion
 
         public FrmPhysician()
@@ -52,31 +52,45 @@ namespace CenterReservation.INT.BasicData
 
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-            _SelectedPhysician.PhysicianName = cbx_PhysicianName.Text;
-            string _message = physician.deleteDBPhysician(_SelectedPhysician);
-            FillPhysicianCombo();
-            MessageBox.Show(_message);
+            if (cbx_PhysicianName.SelectedIndex != -1)
+            {
+                _SelectedPhysician.PhysicianName = cbx_PhysicianName.Text;
+                string _message = physician.deleteDBPhysician(_SelectedPhysician);
+                FillPhysicianCombo();
+                MessageBox.Show(_message);
+            }
+            else
+            {
+                MessageBox.Show("برجاء اختيار بينات للحذف");
+            }
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            if (Mode == "Add")
+            if (ValidateUI())
             {
-                BDPhsycian _bdphysician = new BDPhsycian();
-                _bdphysician.PhysicianName = tbx_PhysicianName.Text.ToString();
-                string _message = physician.addBDPhysician(_bdphysician);
-                FillPhysicianCombo();
-                MessageBox.Show(_message);
+                if (Mode == "Add")
+                {
+                    Physician _bdphysician = new Physician();
+                    _bdphysician.PhysicianName = tbx_PhysicianName.Text.ToString();
+                    string _message = physician.addBDPhysician(_bdphysician);
+                    FillPhysicianCombo();
+                    MessageBox.Show(_message);
+                }
+                else if (Mode == "Edit")
+                {
+                    _SelectedPhysician.PhysicianName = tbx_PhysicianName.Text.ToString();
+                    string _message = physician.addBDPhysician(_SelectedPhysician);
+                    FillPhysicianCombo();
+                    MessageBox.Show(_message);
+                }
+                ControlUI("Select");
+                Mode = "Select";
             }
-            else if (Mode == "Edit")
+            else
             {
-                _SelectedPhysician.PhysicianName = tbx_PhysicianName.Text.ToString();
-                string _message = physician.addBDPhysician(_SelectedPhysician);
-                FillPhysicianCombo();
-                MessageBox.Show(_message);
+                MessageBox.Show("برجاء ادخال بيانات صحيحة");
             }
-            ControlUI("Select");
-            Mode = "Select";
         }
 
         private void btn_Back_Click(object sender, EventArgs e)
@@ -164,6 +178,14 @@ namespace CenterReservation.INT.BasicData
             cbx_PhysicianName.ValueMember = "PhysicianID";
             cbx_PhysicianName.SelectedIndex = -1;
             cbx_PhysicianName_SelectedIndexChanged(cbx_PhysicianName, new EventArgs());
+        }
+
+        private bool ValidateUI()
+        {
+            if (!string.IsNullOrEmpty(tbx_PhysicianName.Text))
+                return true;
+
+            return false;
         }
         #endregion
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using CenterReservation.DL.Entity;
 using CenterReservation.DL.DomainModel;
-using CenterReservation.BL.DataContract;
+//using CenterReservation.BL.DataContract;
 
 
 namespace CenterReservation.BL.Manipulations
@@ -14,8 +14,11 @@ namespace CenterReservation.BL.Manipulations
     public class VisitType
     {
         public CenterReservationEntities _contextDatabase;
+
         public int VisitTypeID { get; set; }
         public string VisitTypeName { get; set; }
+        public decimal VisitPrice { get; set; }
+
         public VisitType()
         {
             this._contextDatabase = new CenterReservationEntities();
@@ -66,6 +69,20 @@ namespace CenterReservation.BL.Manipulations
             {
                 return "Error on delete";
             }
+        }
+
+        public List<VisitType> GetVisitsWithPrics(DateTime Date)
+        {
+            var Query = (from VT in _contextDatabase.BDVisitTypes
+                         join VP in _contextDatabase.BDVisitPrices on VT.VisitTypeID equals VP.VisitTypeID
+                         where VP.FromDate <= Date && VP.ToDate >= Date
+                         select new VisitType
+                         {
+                             VisitTypeID = VT.VisitTypeID,
+                             VisitTypeName = VT.VisitTypeName,
+                             VisitPrice = VP.VisitPrice
+                         }).OrderBy(a => a.VisitTypeName).ToList();
+            return Query;
         }
     }
 }

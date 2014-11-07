@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_Clear = new System.Windows.Forms.Button();
             this.btn_AddPatient = new System.Windows.Forms.Button();
             this.btn_Search = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,6 +52,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_Clear);
             this.groupBox1.Controls.Add(this.btn_AddPatient);
             this.groupBox1.Controls.Add(this.btn_Search);
             this.groupBox1.Controls.Add(this.label2);
@@ -63,6 +65,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "بحث ";
+            // 
+            // btn_Clear
+            // 
+            this.btn_Clear.Location = new System.Drawing.Point(11, 8);
+            this.btn_Clear.Name = "btn_Clear";
+            this.btn_Clear.Size = new System.Drawing.Size(112, 53);
+            this.btn_Clear.TabIndex = 6;
+            this.btn_Clear.Text = "ألغاء البحث";
+            this.btn_Clear.UseVisualStyleBackColor = true;
+            this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
             // 
             // btn_AddPatient
             // 
@@ -99,6 +111,7 @@
             this.tbx_Phone.Name = "tbx_Phone";
             this.tbx_Phone.Size = new System.Drawing.Size(257, 20);
             this.tbx_Phone.TabIndex = 2;
+            this.tbx_Phone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbx_Phone_KeyPress);
             // 
             // label1
             // 
@@ -115,6 +128,7 @@
             this.tbx_PatientName.Name = "tbx_PatientName";
             this.tbx_PatientName.Size = new System.Drawing.Size(257, 20);
             this.tbx_PatientName.TabIndex = 0;
+            this.tbx_PatientName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbx_PatientName_KeyPress);
             // 
             // groupBox2
             // 
@@ -128,6 +142,8 @@
             // 
             // dgrd_SearchResults
             // 
+            this.dgrd_SearchResults.AllowUserToAddRows = false;
+            this.dgrd_SearchResults.AllowUserToDeleteRows = false;
             this.dgrd_SearchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrd_SearchResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clm_Code,
@@ -172,6 +188,7 @@
             this.btn_ShowOldServices.TabIndex = 5;
             this.btn_ShowOldServices.Text = "عرض الجلسات السابقه";
             this.btn_ShowOldServices.UseVisualStyleBackColor = true;
+            this.btn_ShowOldServices.Click += new System.EventHandler(this.btn_ShowOldServices_Click);
             // 
             // btn_AddNewService
             // 
@@ -181,6 +198,7 @@
             this.btn_AddNewService.TabIndex = 6;
             this.btn_AddNewService.Text = "أضافة جلسة جديده";
             this.btn_AddNewService.UseVisualStyleBackColor = true;
+            this.btn_AddNewService.Click += new System.EventHandler(this.btn_AddNewService_Click);
             // 
             // btn_Back
             // 
@@ -190,6 +208,7 @@
             this.btn_Back.TabIndex = 7;
             this.btn_Back.Text = "رجوع";
             this.btn_Back.UseVisualStyleBackColor = true;
+            this.btn_Back.Click += new System.EventHandler(this.btn_Back_Click);
             // 
             // FrmReservasion
             // 
@@ -204,6 +223,7 @@
             this.Name = "FrmReservasion";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "شاشة الحجز";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -231,5 +251,6 @@
         private System.Windows.Forms.Button btn_ShowOldServices;
         private System.Windows.Forms.Button btn_AddNewService;
         private System.Windows.Forms.Button btn_Back;
+        private System.Windows.Forms.Button btn_Clear;
     }
 }

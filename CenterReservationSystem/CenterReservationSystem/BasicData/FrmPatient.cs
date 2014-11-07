@@ -43,7 +43,7 @@ namespace CenterReservation.INT.BasicData
                 MessageBox.Show(ret, @"إضافه\تعديل مريض", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ResetFields();
                 DGVPatient.DataSource = patient.SelectAllBDPatient(); 
-            }
+        }
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
@@ -52,18 +52,18 @@ namespace CenterReservation.INT.BasicData
         }
         private void btn_Edit_Click(object sender, EventArgs e)
         {
-            if (DGVPatient.SelectedCells !=null || DGVPatient.SelectedCells[0] != null)
+            if (DGVPatient.SelectedRows[0]!=null )
             {
-                int patientID = Convert.ToInt32(DGVPatient.Rows[DGVPatient.SelectedCells[0].RowIndex].Cells["PatientID"].Value);
+                int patientID = Convert.ToInt32(DGVPatient.SelectedRows[0].Cells["PatientID"].Value);
                 ACPatient _selectedPatint= patient.SelectPatientByID(patientID);
-                txtNo.Text = _selectedPatint.PatientID.ToString ();
                 txtName.Text = _selectedPatint.PatientName;
                 txtAddress.Text = _selectedPatint.Address;
                 txtPhone.Text = _selectedPatint.Phone;
                 txtMobile.Text = _selectedPatint.Mobile;
                 DtpDOB.Value = _selectedPatint.DOB.Value;
                 txtNotes.Text = _selectedPatint.Notes;
-                
+ 
+
             }
 
         }

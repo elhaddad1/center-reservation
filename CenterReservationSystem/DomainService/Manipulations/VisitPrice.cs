@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using CenterReservation.DL.Entity;
 using CenterReservation.DL.DomainModel;
-using CenterReservation.BL.DataContract;
+//using CenterReservation.BL.DataContract;
 namespace CenterReservation.BL.Manipulations
 {
     public class VisitPriceModel

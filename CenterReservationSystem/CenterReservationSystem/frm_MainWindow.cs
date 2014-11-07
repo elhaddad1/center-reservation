@@ -54,6 +54,12 @@ namespace CenterReservation.INT
             frm.ShowDialog();
         }
 
+        private void NewReservasionWindow_Click(object sender, EventArgs e)
+        {
+            Reservasion.FrmReservasion frm = new Reservasion.FrmReservasion();
+            frm.ShowDialog();
+        }
+
 
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CenterReservation.BL.Manipulations;
-using CenterReservation.BL.DataContract;
+//using CenterReservation.BL.DataContract;
 
 namespace CenterReservation.INT.BasicData
 {
@@ -43,31 +43,46 @@ namespace CenterReservation.INT.BasicData
 
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-            _SelectedVisitType.VisitTypeName = cbx_VisitName.Text;
-            string _message = visitType.deleteBDVisitType(_SelectedVisitType);
-            FillVisitTypeCombo();
-            MessageBox.Show(_message);
+            if (cbx_VisitName.SelectedIndex != -1)
+            {
+
+                _SelectedVisitType.VisitTypeName = cbx_VisitName.Text;
+                string _message = visitType.deleteBDVisitType(_SelectedVisitType);
+                FillVisitTypeCombo();
+                MessageBox.Show(_message);
+            }
+            else
+            {
+                MessageBox.Show("برجاء اختيار بيانات للحذف");
+            }
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            if (Mode == "Add")
+            if (ValidateUI())
             {
-                VisitType _bdvisitType = new VisitType();
-                _bdvisitType.VisitTypeName = tbx_VisitName.Text.ToString();
-                string _message = _bdvisitType.addBDVisitType(_bdvisitType);
-                FillVisitTypeCombo();
-                MessageBox.Show(_message);
+                if (Mode == "Add")
+                {
+                    VisitType _bdvisitType = new VisitType();
+                    _bdvisitType.VisitTypeName = tbx_VisitName.Text.ToString();
+                    string _message = _bdvisitType.addBDVisitType(_bdvisitType);
+                    FillVisitTypeCombo();
+                    MessageBox.Show(_message);
+                }
+                else if (Mode == "Edit")
+                {
+                    _SelectedVisitType.VisitTypeName = tbx_VisitName.Text.ToString();
+                    string _message = visitType.addBDVisitType(_SelectedVisitType);
+                    FillVisitTypeCombo();
+                    MessageBox.Show(_message);
+                }
+                ControlUI("Select");
+                Mode = "Select";
             }
-            else if (Mode == "Edit")
+            else
             {
-                _SelectedVisitType.VisitTypeName = tbx_VisitName.Text.ToString();
-                string _message = visitType.addBDVisitType(_SelectedVisitType);
-                FillVisitTypeCombo();
-                MessageBox.Show(_message);
+                MessageBox.Show("برجاء ادخال بيانات صحيحه اولا");
             }
-            ControlUI("Select");
-            Mode = "Select";
         }
 
         private void btn_Back_Click(object sender, EventArgs e)
@@ -153,6 +168,14 @@ namespace CenterReservation.INT.BasicData
             cbx_VisitName.ValueMember = "VisitTypeID";
             cbx_VisitName.SelectedIndex = -1;
             cbx_VisitName_SelectedIndexChanged(cbx_VisitName, new EventArgs());
+        }
+
+        private bool ValidateUI()
+        {
+            if (!string.IsNullOrEmpty(tbx_VisitName.Text))
+                return true;
+
+            return false;
         }
         #endregion
     }

@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using System.Linq;
 using CenterReservation.DL.Entity;
 using CenterReservation.DL.DomainModel;
-using CenterReservation.BL.DataContract;
+
 namespace CenterReservation.BL.Manipulations
 {
     public class Physician
     {
-
+        public int PhysicianID { get; set; }
+        public string PhysicianName { get; set; }
+        public decimal PhysicianSalary { get; set; }
 
         public CenterReservationEntities _contextDatabase;
 
@@ -20,7 +22,7 @@ namespace CenterReservation.BL.Manipulations
             this._contextDatabase = new CenterReservationEntities();
         }
 
-        public string addBDPhysician(BDPhsycian Physician)
+        public string addBDPhysician(Physician Physician)
         {
             try
             {
@@ -52,7 +54,7 @@ namespace CenterReservation.BL.Manipulations
             return _contextDatabase.BDPhysicians.ToList();
         }
 
-        public string deleteDBPhysician(BDPhsycian Physician)
+        public string deleteDBPhysician(Physician Physician)
         {
             try
             {
@@ -65,6 +67,20 @@ namespace CenterReservation.BL.Manipulations
             {
                 return "Error on delete";
             }
+        }
+
+        public List<Physician> GetPhysiciansWithPrics(DateTime Date)
+        {
+            var Query = (from Ph in _contextDatabase.BDPhysicians
+                         join Sal in _contextDatabase.BDPhysicianSalaries on Ph.PhysicianID equals Sal.PhysicianID
+                         where Sal.FromDate <= Date && Sal.ToDate >= Date
+                         select new Physician
+                         {
+                             PhysicianID = Ph.PhysicianID,
+                             PhysicianName = Ph.PhysicianName,
+                             PhysicianSalary = Sal.PhysicianSalary
+                         }).OrderBy(a => a.PhysicianName).ToList();
+            return Query;
         }
 
 
