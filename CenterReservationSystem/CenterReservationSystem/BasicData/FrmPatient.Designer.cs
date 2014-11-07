@@ -76,6 +76,8 @@
             this.DGVPatient.Name = "DGVPatient";
             this.DGVPatient.ReadOnly = true;
             this.DGVPatient.RowHeadersVisible = false;
+            this.DGVPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGVPatient.ShowCellErrors = false;
             // 
             // PatientID
             // 
