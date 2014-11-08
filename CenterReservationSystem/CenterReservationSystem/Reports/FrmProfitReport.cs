@@ -41,8 +41,8 @@ namespace CenterReservation.INT.Reports
 
         private void btnShowReport_Click(object sender, EventArgs e)
         {
-            //ReportDataSource source=new ReportDataSource ();
-            //source .Value=@"D:\mohamed & rabab\center-reservation\CenterReservationSystem\CenterReservationSystem\Reports\Profitreport.rpt";
+            ReportDataSource source=new ReportDataSource ();
+            source .Value=@"D:\mohamed & rabab\center-reservation\CenterReservationSystem\CenterReservationSystem\Reports\Profitreport.rpt";
            // reportViewer1.LocalReport.DataSources.Add(source);
            // reportViewer1.Show();
 
