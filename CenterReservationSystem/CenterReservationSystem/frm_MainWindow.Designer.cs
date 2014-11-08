@@ -37,6 +37,9 @@
             this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.الحجزToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NewReservasionWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.التقاريرToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemProfitReport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +47,9 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.البياناتالرئيسيةToolStripMenuItem,
-            this.الحجزToolStripMenuItem});
+            this.الحجزToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.التقاريرToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(823, 24);
@@ -109,9 +114,29 @@
             // NewReservasionWindow
             // 
             this.NewReservasionWindow.Name = "NewReservasionWindow";
-            this.NewReservasionWindow.Size = new System.Drawing.Size(152, 22);
+            this.NewReservasionWindow.Size = new System.Drawing.Size(118, 22);
             this.NewReservasionWindow.Text = "حجز جديد";
             this.NewReservasionWindow.Click += new System.EventHandler(this.NewReservasionWindow_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 20);
+            // 
+            // التقاريرToolStripMenuItem
+            // 
+            this.التقاريرToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemProfitReport});
+            this.التقاريرToolStripMenuItem.Name = "التقاريرToolStripMenuItem";
+            this.التقاريرToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.التقاريرToolStripMenuItem.Text = "التقارير";
+            // 
+            // ToolStripMenuItemProfitReport
+            // 
+            this.ToolStripMenuItemProfitReport.Name = "ToolStripMenuItemProfitReport";
+            this.ToolStripMenuItemProfitReport.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemProfitReport.Text = "تقرير الربح";
+            this.ToolStripMenuItemProfitReport.Click += new System.EventHandler(this.ToolStripMenuItemProfitReport_Click);
             // 
             // frm_MainWindow
             // 
@@ -144,5 +169,8 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem الحجزToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem NewReservasionWindow;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem التقاريرToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemProfitReport;
     }
 }

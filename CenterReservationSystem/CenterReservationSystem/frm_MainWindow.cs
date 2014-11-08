@@ -60,6 +60,12 @@ namespace CenterReservation.INT
             frm.ShowDialog();
         }
 
+        private void ToolStripMenuItemProfitReport_Click(object sender, EventArgs e)
+        {
+            Reports.FrmProfitReport frm = new Reports.FrmProfitReport();
+            frm.ShowDialog();
+        }
+
 
     }
 }
